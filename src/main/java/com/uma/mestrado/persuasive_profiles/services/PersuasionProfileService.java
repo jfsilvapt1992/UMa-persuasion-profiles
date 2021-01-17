@@ -64,7 +64,7 @@ public class PersuasionProfileService
     {
       case EXPLICIT:
         logger.info("Selected EXPLICIT algorithm");
-        persuasionProfileAlgorithm = new ExplicitAlgorithm();
+        persuasionProfileAlgorithm = new ExplicitAlgorithm(dbManager, aPersonId);
         break;
       case IMPLICIT:
         logger.info("Selected IMPLICIT algorithm");

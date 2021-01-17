@@ -34,6 +34,7 @@ public class RandomAlgorithm implements PersuasionProfileAlgorithm
 
     response = dbManager.selectInfluencePrinciple(persuasion.name());
 
+    logger.info("Executed random algorithm succesffully!!!");
     logger.info("Selected principle : " + response.getName() + " !!");
 
     return response;

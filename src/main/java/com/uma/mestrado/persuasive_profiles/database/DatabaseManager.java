@@ -28,6 +28,7 @@ import com.uma.mestrado.persuasive_profiles.models.GETLoginRequest;
 import com.uma.mestrado.persuasive_profiles.models.LoginOutput;
 import com.uma.mestrado.persuasive_profiles.models.POSTHistoricRequest;
 import com.uma.mestrado.persuasive_profiles.models.POSTRegisterRequest;
+import com.uma.mestrado.persuasive_profiles.models.PersonDto;
 import com.uma.mestrado.persuasive_profiles.models.PersuasionProfileDto;
 
 
@@ -133,6 +134,22 @@ public class DatabaseManager
       InfluencePrinciple influencePrinciple = influencePrincipleDAO.findOne(QInfluencePrinciple.influencePrinciple.name.equalsIgnoreCase(aName)).get();
 
       return new PersuasionProfileDto(influencePrinciple.getId(), influencePrinciple.getName());
+    }
+    catch (@SuppressWarnings("unused")
+    Exception ex)
+    {
+      throw new DatabaseException("Error selecting historic");
+    }
+  }
+
+  @Transactional
+  public PersonDto selectPerson(int aPersonId) throws DatabaseException
+  {
+    try
+    {
+      Person person = personDAO.findById(aPersonId).get();
+
+      return new PersonDto(person.getName(), person.getAge(), person.getWeight(), person.getHeight());
     }
     catch (@SuppressWarnings("unused")
     Exception ex)
