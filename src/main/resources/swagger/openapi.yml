@@ -1,0 +1,173 @@
+swagger: '2.0'
+info:
+  version: ''
+  title: Persuasive Computation API
+  description: API que contem todos os servicos relacionados com o projecto Computação Persuasiva API que contem todos os servicos relacionados com o projecto Computação Persuasiva
+paths:
+  /v1/register:
+    post:
+      operationId: post-register
+      tags:
+        - V1
+      parameters:
+        - name: name
+          in: query
+          required: true
+          type: string
+        - name: age
+          in: query
+          required: true
+          type: integer
+        - name: gender_id
+          in: query
+          required: true
+          type: integer
+        - name: country_id
+          in: query
+          required: true
+          type: integer
+        - name: weight
+          in: query
+          required: true
+          type: integer
+        - name: height
+          in: query
+          required: true
+          type: integer
+        - name: had_nutricional_consult
+          in: query
+          required: true
+          type: boolean
+        - name: username
+          in: query
+          required: true
+          type: string
+        - name: password
+          in: query
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/basic-error'
+      x-stoplight:
+        id: post-register
+        beforeScript: null
+        afterScript: null
+        public: true
+        mock:
+          statusCode: 200
+          dynamic: false
+          enabled: false
+  /v1/login:
+    get:
+      operationId: get-v1-login
+      summary: /v1/login
+      tags:
+        - V1
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          required: true
+          type: string
+        - name: password
+          in: query
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/login-response'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/login-response'
+      x-stoplight:
+        id: get-v1-login
+        beforeScript: null
+        afterScript: null
+        public: true
+        mock:
+          statusCode: 200
+          dynamic: false
+          enabled: false
+responses:
+  'trait:httpErrorStatus:400':
+    description: ''
+    schema:
+      $ref: '#/definitions/basic-error'
+  'trait:httpErrorStatus:404':
+    description: ''
+    schema:
+      $ref: '#/definitions/basic-error'
+  'trait:httpErrorStatus:500':
+    description: ''
+    schema:
+      $ref: '#/definitions/basic-error'
+definitions:
+  basic-error:
+    title: Basic error
+    type: object
+    properties:
+      message:
+        type: string
+      type:
+        type: string
+    x-stoplight:
+      id: basic-error
+      name: Basic error
+      public: true
+  login-response:
+    title: Login response
+    type: object
+    properties:
+      person_id:
+        type: integer
+      username:
+        type: string
+      error:
+        $ref: '#/definitions/basic-error'
+    x-stoplight:
+      id: login-response
+      name: Login response
+      public: true
+x-stoplight:
+  beforeScript: ''
+  afterScript: ''
+  version:
+    groups:
+      utilFuncs: []
+      savedEntries: []
+      tests: []
+      traits: []
+      docs:
+        - items:
+            - type: endpoints
+              _id: post-register
+            - type: endpoints
+              _id: get-v1-login
+          name: V1
+        - items:
+            - type: schemas
+              _id: basic-error
+            - type: schemas
+              _id: login-response
+          description: Models make up the core input and ouput structures in this API. They are used in endpoint request and response bodies.
+          name: Models
+        - items:
+            - type: traits
+              _id: httpErrorStatus
+          description: Traits describe common behaviors or structures in this API.
+          name: Traits
+  functions: {}
+  textSections: {}
+  mock:
+    dynamic: false
+    enabled: false
+x-tests: {}
