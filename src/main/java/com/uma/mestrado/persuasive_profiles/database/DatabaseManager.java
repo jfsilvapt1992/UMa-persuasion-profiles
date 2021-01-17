@@ -103,7 +103,7 @@ public class DatabaseManager
 
       Date currentDate = new Date();
 
-      historicDAO.save(new Historic(influencePrinciple, person, currentDate, currentDate));
+      historicDAO.save(new Historic(influencePrinciple, person, currentDate, currentDate, aHistoricReq.getWasInfluenced()));
     }
     catch (@SuppressWarnings("unused")
     Exception ex)

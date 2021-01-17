@@ -40,9 +40,9 @@ public class BackendAPIControllers implements V1Api
   }
 
   @Override
-  public ResponseEntity<Void> postHistoric(Integer aPersonId, Integer aInfluencePrincipleId)
+  public ResponseEntity<Void> postHistoric(Integer aPersonId, Integer aInfluencePrincipleId, Boolean aWasInfluenced)
   {
-    return personServices.postHistoric(aPersonId, aInfluencePrincipleId);
+    return personServices.postHistoric(aPersonId, aInfluencePrincipleId, aWasInfluenced);
   }
 
   @Override

@@ -13,11 +13,20 @@ public class ImplicitAlgorithm implements PersuasionProfileAlgorithm
 
   Logger logger = LoggerFactory.getLogger(ImplicitAlgorithm.class);
 
+  // TODO -> ter em conta o ratio de numero de vezes que a persuasao funcionou ou nao
+  // TODO -> wasInfluenced / total historico
+
   @Override
   public PersuasionProfileDto execute() throws Exception
   {
-    logger.info("EXECUTED IMPLICIT ALGORITHM");
-    return null;
+    PersuasionProfileDto response = null;
+
+    logger.info("Executing implicit algorithm");
+
+    logger.info("Executed explit algorithm succesffully!!!");
+    logger.info("Selected principle : " + response.getName() + " !!");
+
+    return response;
   }
 
 }

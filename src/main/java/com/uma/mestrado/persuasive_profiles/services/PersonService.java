@@ -79,13 +79,13 @@ public class PersonService
     }
   }
 
-  public ResponseEntity<Void> postHistoric(Integer aPersonId, Integer aInfluencePrincipleId)
+  public ResponseEntity<Void> postHistoric(Integer aPersonId, Integer aInfluencePrincipleId, Boolean aWasInfluenced)
   {
     try
     {
       logger.info("Starting inserting new person historic ..");
 
-      dbManager.insertHistoric(new POSTHistoricRequest(aPersonId, aInfluencePrincipleId));
+      dbManager.insertHistoric(new POSTHistoricRequest(aPersonId, aInfluencePrincipleId, aWasInfluenced));
 
       logger.info("Inserted historic successfully");
 

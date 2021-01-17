@@ -1,5 +1,5 @@
 package com.uma.mestrado.persuasive_profiles.database.entities;
-// Generated Jan 17, 2021 10:36:05 AM by Hibernate Tools 4.3.2-SNAPSHOT
+// Generated Jan 17, 2021 7:37:12 PM by Hibernate Tools 4.3.2-SNAPSHOT
 
 
 import java.util.Date;
@@ -30,15 +30,17 @@ public class Historic  implements java.io.Serializable {
      private Person person;
      private Date date;
      private Date time;
+     private boolean wasInfluenced;
 
     public Historic() {
     }
 
-    public Historic(InfluencePrinciple influencePrinciple, Person person, Date date, Date time) {
+    public Historic(InfluencePrinciple influencePrinciple, Person person, Date date, Date time, boolean wasInfluenced) {
        this.influencePrinciple = influencePrinciple;
        this.person = person;
        this.date = date;
        this.time = time;
+       this.wasInfluenced = wasInfluenced;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -91,6 +93,16 @@ public class Historic  implements java.io.Serializable {
     
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    
+    @Column(name="was_influenced", nullable=false)
+    public boolean isWasInfluenced() {
+        return this.wasInfluenced;
+    }
+    
+    public void setWasInfluenced(boolean wasInfluenced) {
+        this.wasInfluenced = wasInfluenced;
     }
 
 

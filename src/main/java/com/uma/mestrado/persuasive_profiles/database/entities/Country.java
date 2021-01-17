@@ -1,5 +1,5 @@
 package com.uma.mestrado.persuasive_profiles.database.entities;
-// Generated Jan 17, 2021 10:36:05 AM by Hibernate Tools 4.3.2-SNAPSHOT
+// Generated Jan 17, 2021 7:37:12 PM by Hibernate Tools 4.3.2-SNAPSHOT
 
 
 import java.util.HashSet;
