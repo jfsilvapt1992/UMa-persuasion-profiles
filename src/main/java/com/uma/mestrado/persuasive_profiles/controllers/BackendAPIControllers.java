@@ -8,9 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uma.mestrado.persuasive_profiles.services.PersonService;
+import com.uma.mestrado.persuasive_profiles.services.PersuasionProfileService;
 
 import swaggerCodegen.api.V1Api;
-import swaggerCodegen.models.LoginResponse;
+import swaggerCodegen.models.GetInfluencePrincipleResponse;
+import swaggerCodegen.models.GetLoginResponse;
 
 
 @RestController
@@ -21,6 +23,8 @@ public class BackendAPIControllers implements V1Api
 
   @Autowired
   private PersonService personServices;
+  @Autowired
+  private PersuasionProfileService persuasionProfileService;
 
   @Override
   public ResponseEntity<Void> postRegister(String aName, Integer aAge, Integer aGenderId, Integer aCountryId, Integer aWeight, Integer aHeight,
@@ -30,7 +34,7 @@ public class BackendAPIControllers implements V1Api
   }
 
   @Override
-  public ResponseEntity<LoginResponse> getV1Login(String aUsername, String aPwd)
+  public ResponseEntity<GetLoginResponse> getV1Login(String aUsername, String aPwd)
   {
     return personServices.getV1Login(aUsername, aPwd);
   }
@@ -39,5 +43,11 @@ public class BackendAPIControllers implements V1Api
   public ResponseEntity<Void> postHistoric(Integer aPersonId, Integer aInfluencePrincipleId)
   {
     return personServices.postHistoric(aPersonId, aInfluencePrincipleId);
+  }
+
+  @Override
+  public ResponseEntity<GetInfluencePrincipleResponse> getPersonInfluencePrinciple(Integer aPersonId)
+  {
+    return persuasionProfileService.getPersonInfluencePrinciple(aPersonId);
   }
 }

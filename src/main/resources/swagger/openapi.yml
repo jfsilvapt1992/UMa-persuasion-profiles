@@ -4,6 +4,37 @@ info:
   title: Persuasive Computation API
   description: API que contem todos os servicos relacionados com o projecto Computação Persuasiva API que contem todos os servicos relacionados com o projecto Computação Persuasiva
 paths:
+  '/v1/person/{id}/influence_principle':
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+    get:
+      operationId: get-person-influence-principle
+      summary: '/v1/person/{id}/influence_principle'
+      tags:
+        - V1
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/get-influence-principle-response'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/get-influence-principle-response'
+      x-stoplight:
+        id: get-person-influence-principle
+        beforeScript: null
+        afterScript: null
+        public: true
+        mock:
+          enabled: false
+          dynamic: false
+          statusCode: 200
   /v1/historic:
     post:
       operationId: post-historic
@@ -114,11 +145,11 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/login-response'
+            $ref: '#/definitions/get-login-response'
         '401':
           description: Unauthorized
           schema:
-            $ref: '#/definitions/login-response'
+            $ref: '#/definitions/get-login-response'
       x-stoplight:
         id: get-v1-login
         beforeScript: null
@@ -154,8 +185,8 @@ definitions:
       id: basic-error
       name: Basic error
       public: true
-  login-response:
-    title: Login response
+  get-login-response:
+    title: Get Login Response
     type: object
     properties:
       person_id:
@@ -165,8 +196,22 @@ definitions:
       error:
         $ref: '#/definitions/basic-error'
     x-stoplight:
-      id: login-response
-      name: Login response
+      id: get-login-response
+      name: Get Login Response
+      public: true
+  get-influence-principle-response:
+    title: Get Influence Principle Response
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      error:
+        $ref: '#/definitions/basic-error'
+    x-stoplight:
+      id: get-influence-principle-response
+      name: Get Influence Principle Response
       public: true
 x-stoplight:
   beforeScript: ''
@@ -179,6 +224,8 @@ x-stoplight:
       traits: []
       docs:
         - items:
+            - _id: get-person-influence-principle
+              type: endpoints
             - _id: post-historic
               type: endpoints
             - type: endpoints
@@ -188,9 +235,11 @@ x-stoplight:
           name: V1
         - items:
             - type: schemas
-              _id: basic-error
+              _id: get-login-response
+            - _id: get-influence-principle-response
+              type: schemas
             - type: schemas
-              _id: login-response
+              _id: basic-error
           description: Models make up the core input and ouput structures in this API. They are used in endpoint request and response bodies.
           name: Models
         - items:

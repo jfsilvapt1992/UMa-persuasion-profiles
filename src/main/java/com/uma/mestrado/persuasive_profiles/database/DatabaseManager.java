@@ -14,6 +14,8 @@ import com.uma.mestrado.persuasive_profiles.database.entities.Gender;
 import com.uma.mestrado.persuasive_profiles.database.entities.Historic;
 import com.uma.mestrado.persuasive_profiles.database.entities.InfluencePrinciple;
 import com.uma.mestrado.persuasive_profiles.database.entities.Person;
+import com.uma.mestrado.persuasive_profiles.database.entities.QInfluencePrinciple;
+import com.uma.mestrado.persuasive_profiles.database.entities.QPerson;
 import com.uma.mestrado.persuasive_profiles.database.entities.Users;
 import com.uma.mestrado.persuasive_profiles.database.repository.CountryDAO;
 import com.uma.mestrado.persuasive_profiles.database.repository.GenderDAO;
@@ -26,6 +28,7 @@ import com.uma.mestrado.persuasive_profiles.models.GETLoginRequest;
 import com.uma.mestrado.persuasive_profiles.models.LoginOutput;
 import com.uma.mestrado.persuasive_profiles.models.POSTHistoricRequest;
 import com.uma.mestrado.persuasive_profiles.models.POSTRegisterRequest;
+import com.uma.mestrado.persuasive_profiles.models.PersuasionProfileDto;
 
 
 @Component(value = "DatabaseManager")
@@ -89,6 +92,55 @@ public class DatabaseManager
     return response;
   }
 
+  @Transactional
+  public void insertHistoric(POSTHistoricRequest aHistoricReq) throws DatabaseException
+  {
+    try
+    {
+      Person person = personDAO.findById(aHistoricReq.getPersonId()).get();
+      InfluencePrinciple influencePrinciple = influencePrincipleDAO.findById(aHistoricReq.getInfluencePrincipleId()).get();
+
+      Date currentDate = new Date();
+
+      historicDAO.save(new Historic(influencePrinciple, person, currentDate, currentDate));
+    }
+    catch (@SuppressWarnings("unused")
+    Exception ex)
+    {
+      throw new DatabaseException("Error doing register");
+    }
+  }
+
+  @Transactional
+  public int selectHistoricCount(int aPersonId) throws DatabaseException
+  {
+    try
+    {
+      return historicDAO.findAll(QPerson.person.id.eq(aPersonId)).size();
+    }
+    catch (@SuppressWarnings("unused")
+    Exception ex)
+    {
+      throw new DatabaseException("Error selecting historic");
+    }
+  }
+
+  @Transactional
+  public PersuasionProfileDto selectInfluencePrinciple(String aName) throws DatabaseException
+  {
+    try
+    {
+      InfluencePrinciple influencePrinciple = influencePrincipleDAO.findOne(QInfluencePrinciple.influencePrinciple.name.equalsIgnoreCase(aName)).get();
+
+      return new PersuasionProfileDto(influencePrinciple.getId(), influencePrinciple.getName());
+    }
+    catch (@SuppressWarnings("unused")
+    Exception ex)
+    {
+      throw new DatabaseException("Error selecting historic");
+    }
+  }
+
   private Person insertPerson(POSTRegisterRequest aRegisterInput) throws DatabaseException
   {
     Person personData = null;
@@ -110,25 +162,6 @@ public class DatabaseManager
       throw new DatabaseException("Error saving person data");
     }
     return personData;
-  }
-
-  @Transactional
-  public void insertHistoric(POSTHistoricRequest aHistoricReq) throws DatabaseException
-  {
-    try
-    {
-      Person person = personDAO.findById(aHistoricReq.getPersonId()).get();
-      InfluencePrinciple influencePrinciple = influencePrincipleDAO.findById(aHistoricReq.getInfluencePrincipleId()).get();
-
-      Date currentDate = new Date();
-
-      historicDAO.save(new Historic(influencePrinciple, person, currentDate, currentDate));
-    }
-    catch (@SuppressWarnings("unused")
-    Exception ex)
-    {
-      throw new DatabaseException("Error doing register");
-    }
   }
 
   private void createUser(Person aPerson, String aUsername, String aPwd) throws DatabaseException

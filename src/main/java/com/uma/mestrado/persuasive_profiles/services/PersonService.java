@@ -16,7 +16,7 @@ import com.uma.mestrado.persuasive_profiles.models.POSTHistoricRequest;
 import com.uma.mestrado.persuasive_profiles.models.POSTRegisterRequest;
 
 import swaggerCodegen.models.BasicError;
-import swaggerCodegen.models.LoginResponse;
+import swaggerCodegen.models.GetLoginResponse;
 
 
 @Service(value = "PersonService")
@@ -49,7 +49,7 @@ public class PersonService
     return new ResponseEntity<Void>(HttpStatus.OK);
   }
 
-  public ResponseEntity<LoginResponse> getV1Login(String aUsername, String aPwd)
+  public ResponseEntity<GetLoginResponse> getV1Login(String aUsername, String aPwd)
   {
     try
     {
@@ -63,13 +63,13 @@ public class PersonService
       if (login)
       {
         logger.info("Login successffully!!");
-        return new ResponseEntity<LoginResponse>(new LoginResponse().username(userInfo.getUsername()).personId(userInfo.getPerson_id()), HttpStatus.OK);
+        return new ResponseEntity<GetLoginResponse>(new GetLoginResponse().username(userInfo.getUsername()).personId(userInfo.getPerson_id()), HttpStatus.OK);
       }
       else
       {
         logger.info("Not authorize!!");
-        return new ResponseEntity<LoginResponse>(
-        new LoginResponse().error(new BasicError().message("Invalid username or password").type("UnauthorizeException")), HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<GetLoginResponse>(
+        new GetLoginResponse().error(new BasicError().message("Invalid username or password").type("UnauthorizeException")), HttpStatus.UNAUTHORIZED);
       }
     }
     catch (DatabaseException e)
