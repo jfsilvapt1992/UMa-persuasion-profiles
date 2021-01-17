@@ -35,4 +35,9 @@ public class BackendAPIControllers implements V1Api
     return personServices.getV1Login(aUsername, aPwd);
   }
 
+  @Override
+  public ResponseEntity<Void> postHistoric(Integer aPersonId, Integer aInfluencePrincipleId)
+  {
+    return personServices.postHistoric(aPersonId, aInfluencePrincipleId);
+  }
 }

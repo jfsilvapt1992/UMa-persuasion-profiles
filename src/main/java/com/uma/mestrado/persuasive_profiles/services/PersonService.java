@@ -10,9 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.uma.mestrado.persuasive_profiles.database.DatabaseManager;
 import com.uma.mestrado.persuasive_profiles.exceptions.DatabaseException;
+import com.uma.mestrado.persuasive_profiles.models.GETLoginRequest;
 import com.uma.mestrado.persuasive_profiles.models.LoginOutput;
-import com.uma.mestrado.persuasive_profiles.models.LoginRequest;
-import com.uma.mestrado.persuasive_profiles.models.RegisterRequest;
+import com.uma.mestrado.persuasive_profiles.models.POSTHistoricRequest;
+import com.uma.mestrado.persuasive_profiles.models.POSTRegisterRequest;
 
 import swaggerCodegen.models.BasicError;
 import swaggerCodegen.models.LoginResponse;
@@ -34,7 +35,7 @@ public class PersonService
     {
       logger.info("Starting register of person..");
 
-      RegisterRequest inputs = new RegisterRequest(aName, aUsername, aPassword, aAge, aCountryId, aGenderId, aWeight, aHeight, aHadNutricionalConsult);
+      POSTRegisterRequest inputs = new POSTRegisterRequest(aName, aUsername, aPassword, aAge, aCountryId, aGenderId, aWeight, aHeight, aHadNutricionalConsult);
 
       dbManager.register(inputs);
 
@@ -48,13 +49,13 @@ public class PersonService
     return new ResponseEntity<Void>(HttpStatus.OK);
   }
 
-  public ResponseEntity<LoginResponse> getV1Login(String username, String password)
+  public ResponseEntity<LoginResponse> getV1Login(String aUsername, String aPwd)
   {
     try
     {
       logger.info("Starting login ..");
 
-      LoginRequest request = new LoginRequest(username, password);
+      GETLoginRequest request = new GETLoginRequest(aUsername, aPwd);
 
       LoginOutput userInfo = dbManager.login(request);
 
@@ -75,6 +76,25 @@ public class PersonService
     {
       logger.error(this.getClass().getName() + " error : ", e.getMessage());
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  public ResponseEntity<Void> postHistoric(Integer aPersonId, Integer aInfluencePrincipleId)
+  {
+    try
+    {
+      logger.info("Starting inserting new person historic ..");
+
+      dbManager.insertHistoric(new POSTHistoricRequest(aPersonId, aInfluencePrincipleId));
+
+      logger.info("Inserted historic successfully");
+
+      return new ResponseEntity<>(HttpStatus.OK);
+    }
+    catch (DatabaseException e)
+    {
+      logger.error(this.getClass().getName() + " error : ", e.getMessage());
+      return new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }

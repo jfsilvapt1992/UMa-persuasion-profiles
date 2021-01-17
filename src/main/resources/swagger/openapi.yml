@@ -4,6 +4,37 @@ info:
   title: Persuasive Computation API
   description: API que contem todos os servicos relacionados com o projecto Computação Persuasiva API que contem todos os servicos relacionados com o projecto Computação Persuasiva
 paths:
+  /v1/historic:
+    post:
+      operationId: post-historic
+      summary: /v1/historic
+      tags:
+        - V1
+      parameters:
+        - name: person_id
+          in: query
+          required: true
+          type: integer
+        - name: influence_principle_id
+          in: query
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: ''
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/basic-error'
+      x-stoplight:
+        id: post-historic
+        beforeScript: null
+        afterScript: null
+        public: true
+        mock:
+          enabled: false
+          dynamic: false
+          statusCode: 200
   /v1/register:
     post:
       operationId: post-register
@@ -148,6 +179,8 @@ x-stoplight:
       traits: []
       docs:
         - items:
+            - _id: post-historic
+              type: endpoints
             - type: endpoints
               _id: post-register
             - type: endpoints

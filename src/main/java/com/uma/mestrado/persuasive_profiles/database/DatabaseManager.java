@@ -1,6 +1,8 @@
 package com.uma.mestrado.persuasive_profiles.database;
 
 
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,16 +11,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.uma.mestrado.persuasive_profiles.database.entities.Country;
 import com.uma.mestrado.persuasive_profiles.database.entities.Gender;
+import com.uma.mestrado.persuasive_profiles.database.entities.Historic;
+import com.uma.mestrado.persuasive_profiles.database.entities.InfluencePrinciple;
 import com.uma.mestrado.persuasive_profiles.database.entities.Person;
 import com.uma.mestrado.persuasive_profiles.database.entities.Users;
 import com.uma.mestrado.persuasive_profiles.database.repository.CountryDAO;
 import com.uma.mestrado.persuasive_profiles.database.repository.GenderDAO;
+import com.uma.mestrado.persuasive_profiles.database.repository.HistoricDAO;
+import com.uma.mestrado.persuasive_profiles.database.repository.InfluencePrincipleDAO;
 import com.uma.mestrado.persuasive_profiles.database.repository.PersonDAO;
 import com.uma.mestrado.persuasive_profiles.database.repository.UsersDAO;
 import com.uma.mestrado.persuasive_profiles.exceptions.DatabaseException;
+import com.uma.mestrado.persuasive_profiles.models.GETLoginRequest;
 import com.uma.mestrado.persuasive_profiles.models.LoginOutput;
-import com.uma.mestrado.persuasive_profiles.models.LoginRequest;
-import com.uma.mestrado.persuasive_profiles.models.RegisterRequest;
+import com.uma.mestrado.persuasive_profiles.models.POSTHistoricRequest;
+import com.uma.mestrado.persuasive_profiles.models.POSTRegisterRequest;
 
 
 @Component(value = "DatabaseManager")
@@ -35,9 +42,13 @@ public class DatabaseManager
   private GenderDAO genderDAO;
   @Autowired
   private UsersDAO usersDAO;
+  @Autowired
+  private InfluencePrincipleDAO influencePrincipleDAO;
+  @Autowired
+  private HistoricDAO historicDAO;
 
   @Transactional
-  public void register(RegisterRequest aRegisterInput) throws DatabaseException
+  public void register(POSTRegisterRequest aRegisterInput) throws DatabaseException
   {
     try
     {
@@ -53,7 +64,7 @@ public class DatabaseManager
   }
 
   @Transactional
-  public LoginOutput login(LoginRequest aLoginRequest) throws DatabaseException
+  public LoginOutput login(GETLoginRequest aLoginRequest) throws DatabaseException
   {
     LoginOutput response = null;
     try
@@ -78,7 +89,7 @@ public class DatabaseManager
     return response;
   }
 
-  private Person insertPerson(RegisterRequest aRegisterInput) throws DatabaseException
+  private Person insertPerson(POSTRegisterRequest aRegisterInput) throws DatabaseException
   {
     Person personData = null;
     try
@@ -99,6 +110,25 @@ public class DatabaseManager
       throw new DatabaseException("Error saving person data");
     }
     return personData;
+  }
+
+  @Transactional
+  public void insertHistoric(POSTHistoricRequest aHistoricReq) throws DatabaseException
+  {
+    try
+    {
+      Person person = personDAO.findById(aHistoricReq.getPersonId()).get();
+      InfluencePrinciple influencePrinciple = influencePrincipleDAO.findById(aHistoricReq.getInfluencePrincipleId()).get();
+
+      Date currentDate = new Date();
+
+      historicDAO.save(new Historic(influencePrinciple, person, currentDate, currentDate));
+    }
+    catch (@SuppressWarnings("unused")
+    Exception ex)
+    {
+      throw new DatabaseException("Error doing register");
+    }
   }
 
   private void createUser(Person aPerson, String aUsername, String aPwd) throws DatabaseException

@@ -1,12 +1,12 @@
 package com.uma.mestrado.persuasive_profiles.models;
 
 
-public class LoginRequest
+public class GETLoginRequest
 {
 
   private String username, password;
 
-  public LoginRequest(String aUsername, String aPassword)
+  public GETLoginRequest(String aUsername, String aPassword)
   {
     super();
     username = aUsername;

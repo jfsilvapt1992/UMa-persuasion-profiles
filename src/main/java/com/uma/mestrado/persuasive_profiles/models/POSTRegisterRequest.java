@@ -1,7 +1,7 @@
 package com.uma.mestrado.persuasive_profiles.models;
 
 
-public class RegisterRequest
+public class POSTRegisterRequest
 {
 
   private String name, username, password;
@@ -9,7 +9,7 @@ public class RegisterRequest
   private boolean hadNutricionalConsult;
 
 
-  public RegisterRequest(String aName, String aUsername, String aPassword, int aAge, int aCountryId, int aGenderId, int aWeight, int aHeight,
+  public POSTRegisterRequest(String aName, String aUsername, String aPassword, int aAge, int aCountryId, int aGenderId, int aWeight, int aHeight,
   boolean aHadNutricionalConsult)
   {
     super();
