@@ -6,6 +6,12 @@ public class GETLoginRequest
 
   private String username, password;
 
+
+  public GETLoginRequest()
+  {
+    super();
+  }
+
   public GETLoginRequest(String aUsername, String aPassword)
   {
     super();
@@ -22,4 +28,18 @@ public class GETLoginRequest
   {
     return password;
   }
+
+
+  public void setUsername(String aUsername)
+  {
+    username = aUsername;
+  }
+
+
+  public void setPassword(String aPassword)
+  {
+    password = aPassword;
+  }
+
+
 }

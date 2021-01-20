@@ -2,6 +2,8 @@ package com.uma.mestrado.persuasive_profiles.database;
 
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +26,9 @@ import com.uma.mestrado.persuasive_profiles.database.repository.InfluencePrincip
 import com.uma.mestrado.persuasive_profiles.database.repository.PersonDAO;
 import com.uma.mestrado.persuasive_profiles.database.repository.UsersDAO;
 import com.uma.mestrado.persuasive_profiles.exceptions.DatabaseException;
+import com.uma.mestrado.persuasive_profiles.models.CountryDto;
 import com.uma.mestrado.persuasive_profiles.models.GETLoginRequest;
+import com.uma.mestrado.persuasive_profiles.models.GenderDto;
 import com.uma.mestrado.persuasive_profiles.models.LoginOutput;
 import com.uma.mestrado.persuasive_profiles.models.POSTHistoricRequest;
 import com.uma.mestrado.persuasive_profiles.models.POSTRegisterRequest;
@@ -155,6 +159,38 @@ public class DatabaseManager
     Exception ex)
     {
       throw new DatabaseException("Error selecting historic");
+    }
+  }
+
+  @Transactional
+  public List<CountryDto> selectCountries() throws DatabaseException
+  {
+    try
+    {
+      List<Country> countries = countryDAO.findAll();
+
+      return countries.stream().map(temp -> new CountryDto(temp.getId(), temp.getName())).collect(Collectors.toList());
+    }
+    catch (@SuppressWarnings("unused")
+    Exception ex)
+    {
+      throw new DatabaseException("Error selecting countries");
+    }
+  }
+
+  @Transactional
+  public List<GenderDto> selectGenders() throws DatabaseException
+  {
+    try
+    {
+      List<Gender> genders = genderDAO.findAll();
+
+      return genders.stream().map(temp -> new GenderDto(temp.getId(), temp.getType())).collect(Collectors.toList());
+    }
+    catch (@SuppressWarnings("unused")
+    Exception ex)
+    {
+      throw new DatabaseException("Error selecting genders");
     }
   }
 
