@@ -28,14 +28,15 @@ public class PersonService
   @Autowired
   private DatabaseManager dbManager;
 
-  public ResponseEntity<Void> postRegister(String aName, Integer aAge, Integer aGenderId, Integer aCountryId, Integer aWeight, Integer aHeight,
+  public ResponseEntity<Void> postRegister(String aName, String aAge, Integer aGenderId, Integer aCountryId, String aWeight, String aHeight,
   Boolean aHadNutricionalConsult, String aUsername, String aPassword)
   {
     try
     {
       logger.info("Starting register of person..");
 
-      POSTRegisterRequest inputs = new POSTRegisterRequest(aName, aUsername, aPassword, aAge, aCountryId, aGenderId, aWeight, aHeight, aHadNutricionalConsult);
+      POSTRegisterRequest inputs =
+      new POSTRegisterRequest(aName, aUsername, aPassword, aAge, aCountryId, aGenderId, aWeight, aHeight, aHadNutricionalConsult);
 
       dbManager.register(inputs);
 

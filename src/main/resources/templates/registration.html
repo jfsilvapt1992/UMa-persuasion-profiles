@@ -1,85 +1,106 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Create New Employee</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<meta charset="UTF-8">
+<title>Registo</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 </head>
 <body>
-<div class="container my-3">
-    <div class="row">
-        <div class="col-md-8 mx-auto">
-            <h2>Employee Registration</h2>
-            <form action="#" th:action="@{/registration}" th:object="${registerReq}" method="POST" >
-                <div class="form-row">
-                    <div class="col-md-6 form-group">
-                        <label>Nome</label>
-                        <input type="text" class="form-control" th:field="*{name}">
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Age</label>
-                        <input type="number" class="form-control" th:field="*{age}">
-                    </div>
-                    <div class="col-md-3 form-group">
-                       <label>Países:</label>
-                        <select class="form-control" th:field="*{countryId}">
-	                        <option th:each="country : ${countryList}"
-	                         th:value="${country.getId()}"
-	                         th:text="${country.getName()}">
-	                        </option>
-                    	</select>
-                    </div>
-                    <div class="col-md-6 form-group">
-                       <label>Sexo:</label>
-                         <select class="form-control" th:field="*{genderId}">
-	                       <option th:each="gender : ${genderList}"
-	                         th:value="${gender.getId()}"
-	                         th:text="${gender.getType()}">
-	                        </option>
-                    	 </select>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Peso</label>
-                        <input type="number" class="form-control" th:field="*{weight}">
-                    </div>
-                     <div class="col-md-6 form-group">
-                        <label>Altura</label>
-                        <input type="number" class="form-control" th:field="*{height}">
-                    </div>
-                     <div class="col-md-6 form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" th:field="*{username}">
-                    </div>
-                     <div class="col-md-6 form-group">
-                        <label>Password</label>
-                        <input type="text" class="form-control" th:field="*{pwd}">
-                    </div>
-                     <div class="col-md-6 form-group">
-                        <strong>Alguma vez realizou consulta nutricional?</strong>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" th:field="*{hadNutricionalConsult}" id="option1" value="true">
-                            <label class="form-check-label" for="option1">Sim</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" th:field="*{hadNutricionalConsult}" id="option2" value="false">
-                            <label class="form-check-label" for="option2">Não</label>
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
-            </form>
-        </div>
-    </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
- <script>
+	<div class="container my-3">
+		<div class="row">
+			<div class="col-md-8 mx-auto">
+				<h2>Registo</h2>
+				<form action="#" th:action="@{/registration}"
+					th:object="${registerReq}" method="POST">
+					<div class="form-row">
+						<div class="col-md-6 form-group">
+							<label>Nome</label> <input type="text" class="form-control"
+								th:field="*{name}">
+							<p class="alert alert-danger"
+								th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+								role="alert"> Nome em falta
+						</div>
+						<div class="col-md-6 form-group">
+							<label>Age</label> <input type="text" class="form-control"
+								th:field="*{age}">
+							<p class="alert alert-danger" th:if="${#fields.hasErrors('age')}"
+								th:errors="*{age}" role="alert"> Idade inválida (> 5 anos) 
+						</div>
+						<div class="col-md-3 form-group">
+							<label>Países:</label> <select class="form-control"
+								th:field="*{countryId}">
+								<option th:each="country : ${countryList}"
+									th:value="${country.getId()}" th:text="${country.getName()}">
+								</option>
+							</select>
+						</div>
+						<div class="col-md-6 form-group">
+							<label>Sexo:</label> <select class="form-control"
+								th:field="*{genderId}">
+								<option th:each="gender : ${genderList}"
+									th:value="${gender.getId()}" th:text="${gender.getType()}">
+								</option>
+							</select>
+						</div>
+						<div class="col-md-6 form-group">
+							<label>Peso</label> <input type="text" class="form-control"
+								th:field="*{weight}">
+							<p class="alert alert-danger"
+								th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"
+								role="alert"> Peso incorrecto (> 10kg)
+						</div>
+						<div class="col-md-6 form-group">
+							<label>Altura</label> <input type="text" class="form-control"
+								th:field="*{height}">
+							<p class="alert alert-danger"
+								th:if="${#fields.hasErrors('height')}" th:errors="*{height}"
+								role="alert"> Altura incorrecta (> 100cm)
+						</div>
+						<div class="col-md-6 form-group">
+							<label>Username</label> <input type="text" class="form-control"
+								th:field="*{username}">
+							<p class="alert alert-danger"
+								th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+								role="alert"> Password em falta
+						</div>
+						<div class="col-md-6 form-group">
+							<label>Password</label> <input type="text" class="form-control"
+								th:field="*{pwd}">
+							<p class="alert alert-danger"
+								th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+								role="alert"> Username em falta
+						</div>
+						<div class="col-md-6 form-group">
+							<strong>Alguma vez realizou consulta nutricional?</strong>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									th:field="*{hadNutricionalConsult}" id="option1" value="true">
+								<label class="form-check-label" for="option1">Sim</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio"
+									th:field="*{hadNutricionalConsult}" id="option2" value="false">
+								<label class="form-check-label" for="option2">Não</label>
+							</div>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
     $(function() {
         $("#join_datepicker").datepicker({dateFormat:"yy-mm-dd"});
         $("#retire_datepicker").datepicker({dateFormat:"yy-mm-dd"});
     });
 </script>
 </body>
-</html> 
+</html>

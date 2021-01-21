@@ -31,7 +31,9 @@ public class BackendAPIControllers implements V1Api
   public ResponseEntity<Void> postRegister(String aName, Integer aAge, Integer aGenderId, Integer aCountryId, Integer aWeight, Integer aHeight,
   Boolean aHadNutricionalConsult, String aUsername, String aPassword)
   {
-    return personServices.postRegister(aName, aAge, aGenderId, aCountryId, aWeight, aHeight, aHadNutricionalConsult, aUsername, aPassword);
+    return personServices.postRegister(aName, String.valueOf(aAge), aGenderId, aCountryId, String.valueOf(aWeight), String.valueOf(aHeight),
+    aHadNutricionalConsult, aUsername,
+    aPassword);
   }
 
   @Override

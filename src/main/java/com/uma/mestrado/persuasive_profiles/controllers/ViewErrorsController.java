@@ -7,19 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-public class ViewIndexController
+public class ViewErrorsController
 {
 
   @GetMapping(
   {
-    "",
-    "/",
-    "index",
-    "index.html"
+    "error500",
+    "error500.html"
   })
   public String home(Model aModel)
   {
-    return "index";
+    return "error500";
   }
 
 }

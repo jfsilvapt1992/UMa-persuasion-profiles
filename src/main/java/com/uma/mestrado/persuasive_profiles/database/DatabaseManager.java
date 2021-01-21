@@ -81,7 +81,7 @@ public class DatabaseManager
 
       Users user = usersDAO.findOneByUsername(aLoginRequest.getUsername());
 
-      boolean pwdMatches = user.getPassword().equalsIgnoreCase(aLoginRequest.getPassword());
+      boolean pwdMatches = user == null ? false : user.getPassword().equalsIgnoreCase(aLoginRequest.getPassword());
 
       if (pwdMatches)
       {
@@ -203,8 +203,11 @@ public class DatabaseManager
 
       Country country = countryDAO.findById(aRegisterInput.getCountryId()).get();
       Gender gender = genderDAO.findById(aRegisterInput.getGenderId()).get();
-      personData = new Person(country, gender, aRegisterInput.getName(), aRegisterInput.getAge(), aRegisterInput.getWeight(), aRegisterInput.getHeight(),
+
+      personData = new Person(country, gender, aRegisterInput.getName(), Integer.parseInt(aRegisterInput.getAge()),
+      Integer.parseInt(aRegisterInput.getWeight()), Integer.parseInt(aRegisterInput.getHeight()),
       aRegisterInput.isHadNutricionalConsult());
+
       personDAO.save(personData);
 
       logger.info("Person data inserted successfully");

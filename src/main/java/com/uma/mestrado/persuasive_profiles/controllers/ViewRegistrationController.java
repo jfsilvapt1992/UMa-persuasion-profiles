@@ -3,11 +3,15 @@ package com.uma.mestrado.persuasive_profiles.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +35,7 @@ public class ViewRegistrationController
   private PersonService personService;
 
   @GetMapping("/registration")
-  public String showRegistForm(Model aModel)
+  public String showRegistForm(@ModelAttribute(name = "registerReq") POSTRegisterRequest aRegisterRequest, Model aModel)
   {
     POSTRegisterRequest registerRequest = new POSTRegisterRequest();
     List<CountryDto> countries = null;
@@ -49,16 +53,37 @@ public class ViewRegistrationController
     catch (Exception e)
     {
       logger.error("", e);
+      return "redirect:/error500";
     }
 
     return "registration";
   }
 
   @PostMapping("/registration")
-  public String saveRegist(@ModelAttribute POSTRegisterRequest aRequest, Model aModel)
+  public String saveRegist(@Valid @ModelAttribute(name = "registerReq") POSTRegisterRequest aRequest, BindingResult aBindingResult)
   {
-    personService.postRegister(aRequest.getName(), aRequest.getAge(), aRequest.getGenderId(), aRequest.getCountryId(), aRequest.getWeight(),
-    aRequest.getHeight(), aRequest.isHadNutricionalConsult(), aRequest.getUsername(), aRequest.getPwd());
-    return "index";
+    try
+    {
+      if (aBindingResult.hasErrors())
+      {
+        return "registration";
+      }
+
+      ResponseEntity<Void> register =
+      personService.postRegister(aRequest.getName(), aRequest.getAge(), aRequest.getGenderId(), aRequest.getCountryId(),
+      aRequest.getWeight(), aRequest.getHeight(), aRequest.isHadNutricionalConsult(), aRequest.getUsername(), aRequest.getPwd());
+
+      if (!register.getStatusCode().is2xxSuccessful())
+      {
+        return "redirect:/error500";
+      }
+      return "redirect:/login";
+    }
+    catch (Exception e)
+    {
+      logger.error("", e);
+      return "redirect:/error500";
+    }
   }
+
 }

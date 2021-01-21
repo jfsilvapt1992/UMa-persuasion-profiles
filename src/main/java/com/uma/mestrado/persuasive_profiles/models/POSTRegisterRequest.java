@@ -1,11 +1,26 @@
 package com.uma.mestrado.persuasive_profiles.models;
 
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+
 public class POSTRegisterRequest
 {
 
-  private String name, username, pwd;
-  private int age, countryId, genderId, weight, height;
+  @NotEmpty(message = "Nome em falta")
+  private String name;
+  @NotEmpty(message = "Username em falta")
+  private String username;
+  @NotEmpty(message = "Password em falta")
+  private String pwd;
+  @NotEmpty(message = "Idade incorrecta ( > 10 anos )")
+  private String age;
+  private int countryId;
+  private int genderId;
+  @NotEmpty(message = "Peso inválido ( > 50kg )")
+  private String weight;
+  @NotEmpty(message = "Altura inválida ( > 100cm )")
+  private String height;
   private boolean hadNutricionalConsult;
 
   public POSTRegisterRequest()
@@ -13,7 +28,7 @@ public class POSTRegisterRequest
     //
   }
 
-  public POSTRegisterRequest(String aName, String aUsername, String aPwd, int aAge, int aCountryId, int aGenderId, int aWeight, int aHeight,
+  public POSTRegisterRequest(String aName, String aUsername, String aPwd, String aAge, int aCountryId, int aGenderId, String aWeight, String aHeight,
   boolean aHadNutricionalConsult)
   {
     super();
@@ -28,6 +43,7 @@ public class POSTRegisterRequest
     hadNutricionalConsult = aHadNutricionalConsult;
   }
 
+
   public String getName()
   {
     return name;
@@ -40,9 +56,21 @@ public class POSTRegisterRequest
   }
 
 
+  public String getUsername()
+  {
+    return username;
+  }
+
+
   public void setUsername(String aUsername)
   {
     username = aUsername;
+  }
+
+
+  public String getPwd()
+  {
+    return pwd;
   }
 
 
@@ -52,9 +80,21 @@ public class POSTRegisterRequest
   }
 
 
-  public void setAge(int aAge)
+  public String getAge()
+  {
+    return age;
+  }
+
+
+  public void setAge(String aAge)
   {
     age = aAge;
+  }
+
+
+  public int getCountryId()
+  {
+    return countryId;
   }
 
 
@@ -64,21 +104,45 @@ public class POSTRegisterRequest
   }
 
 
+  public int getGenderId()
+  {
+    return genderId;
+  }
+
+
   public void setGenderId(int aGenderId)
   {
     genderId = aGenderId;
   }
 
 
-  public void setWeight(int aWeight)
+  public String getWeight()
+  {
+    return weight;
+  }
+
+
+  public void setWeight(String aWeight)
   {
     weight = aWeight;
   }
 
 
-  public void setHeight(int aHeight)
+  public String getHeight()
+  {
+    return height;
+  }
+
+
+  public void setHeight(String aHeight)
   {
     height = aHeight;
+  }
+
+
+  public boolean isHadNutricionalConsult()
+  {
+    return hadNutricionalConsult;
   }
 
 
@@ -86,46 +150,5 @@ public class POSTRegisterRequest
   {
     hadNutricionalConsult = aHadNutricionalConsult;
   }
-
-  public String getUsername()
-  {
-    return username;
-  }
-
-  public String getPwd()
-  {
-    return pwd;
-  }
-
-  public int getAge()
-  {
-    return age;
-  }
-
-  public int getCountryId()
-  {
-    return countryId;
-  }
-
-  public int getGenderId()
-  {
-    return genderId;
-  }
-
-  public int getWeight()
-  {
-    return weight;
-  }
-
-  public int getHeight()
-  {
-    return height;
-  }
-
-  public boolean isHadNutricionalConsult()
-  {
-    return hadNutricionalConsult;
-  }
-
 
 }
