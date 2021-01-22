@@ -25,6 +25,8 @@ public class ViewLoginController
 
   @GetMapping(
   {
+    "",
+    "/",
     "login",
     "login.html"
   })

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registo</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<Style>
+.landing-page {
+	margin-top: 50px;
+}
+
+.home-class {
+	float: left;
+}
+
+.logout-class {
+	float: right;
+}
+</Style>
+</head>
+<body>
+	<div class="container my-3">
+		<nav class="navbar navbar-light bg-light justify-content-between">
+
+			<form th:action="@{/registration}" method="GET">
+				<div class="home-class">
+					<button class="btn btn-light" type="submit">Home</button>
+				</div>
+			</form>
+			<form th:action="@{/login}" method="GET">
+				<div class="logout-class">
+					<button class="btn btn-light" type="submit">Logout</button>
+				</div>
+			</form>
+		</nav>
+		<div class="panel-body">
+			<div class="landing-page">
+				<div class="col-md-12">
+					<p class="welcome-text">Lorem ipsum dolor sit amet,
+						consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+						Aenean massa. Cum sociis natoque penatibus et magnis dis
+						parturient montes, nascetur ridiculus mus. Donec quam felis,
+						ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat
+						massa quis enim. Donec pede justo, fringilla vel, aliquet nec,
+						vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,
+						venenatis vitae, justo. Nullam dictum felis eu pede mollis
+						pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper
+						nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
+						porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem
+						ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus
+						viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean
+						imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper
+						ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus,
+						tellus eget condimentum rhoncus, sem quam semper libero, sit amet
+						adipiscing sem neque sed ipsum.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+    $(function() {
+        $("#join_datepicker").datepicker({dateFormat:"yy-mm-dd"});
+        $("#retire_datepicker").datepicker({dateFormat:"yy-mm-dd"});
+    });
+</script>
+</body>
+</html>

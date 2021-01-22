@@ -35,7 +35,7 @@ public class ExplicitAlgorithm implements PersuasionProfileAlgorithm
     logger.info("Executing explit algorithm");
 
     PersonDto person = dbManager.selectPerson(personId);
-
+    logger.info("############## DECIDING INFLUENCE PRINCIPLE TO APPLY ##################");
     IMCEnum imcEnum = IMCEnum.get(person.getWeight(), person.getHeight());
     switch (imcEnum)
     {
@@ -49,9 +49,9 @@ public class ExplicitAlgorithm implements PersuasionProfileAlgorithm
         response = getPersuasionProfile(InfluencePrincipleEnum.LIKING.name());
         break;
     }
-
+    logger.info("Influence principle choosed: " + response.getName());
+    logger.info("#######################################################################");
     logger.info("Executed explit algorithm succesffully!!!");
-    logger.info("Selected principle : " + response.getName() + " !!");
 
     return response;
   }

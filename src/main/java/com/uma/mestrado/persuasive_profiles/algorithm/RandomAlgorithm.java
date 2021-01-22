@@ -29,13 +29,15 @@ public class RandomAlgorithm implements PersuasionProfileAlgorithm
     PersuasionProfileDto response = null;
 
     logger.info("Executing random algorithm");
+    logger.info("############## DECIDING INFLUENCE PRINCIPLE TO APPLY ##################");
 
     InfluencePrincipleEnum persuasion = InfluencePrincipleEnum.get(getRandomNumber());
 
     response = dbManager.selectInfluencePrinciple(persuasion.name());
 
+    logger.info("Influence principle choosed: " + response.getName());
+    logger.info("#######################################################################");
     logger.info("Executed random algorithm succesffully!!!");
-    logger.info("Selected principle : " + response.getName() + " !!");
 
     return response;
   }

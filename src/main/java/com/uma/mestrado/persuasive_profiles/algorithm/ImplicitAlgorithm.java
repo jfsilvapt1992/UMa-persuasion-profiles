@@ -23,8 +23,6 @@ public class ImplicitAlgorithm implements PersuasionProfileAlgorithm
   private DatabaseManager dbManager;
   private int personId;
 
-  // TODO -> ter em conta o ratio de numero de vezes que a persuasao funcionou ou nao
-  // TODO -> wasInfluenced / total historico
   public ImplicitAlgorithm(DatabaseManager aDatabaseManager, int aPersonId)
   {
     personId = aPersonId;
@@ -39,10 +37,7 @@ public class ImplicitAlgorithm implements PersuasionProfileAlgorithm
     {
       logger.info("Executing implicit algorithm");
 
-      // logger.info("Selected principle : " + response.getName() + " !!");
       HistoricDto historicDto = dbManager.selectAllHistoric(personId);
-
-      logger.info("Utilizador : " + historicDto.getPerson().getName());
 
       Map<PersuasionProfileDto, Double> ratios = new HashMap<PersuasionProfileDto, Double>();
       for (PersuasionProfileDto profile : historicDto.getPersuasions())
