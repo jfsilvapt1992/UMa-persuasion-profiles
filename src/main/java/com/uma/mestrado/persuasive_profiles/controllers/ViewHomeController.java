@@ -1,6 +1,8 @@
 package com.uma.mestrado.persuasive_profiles.controllers;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,7 +24,7 @@ public class ViewHomeController
     "home",
     "home.html"
   })
-  private String getHome(Model aModel)
+  public String getHome(Model aModel, HttpSession session)
   {
     return "home";
   }

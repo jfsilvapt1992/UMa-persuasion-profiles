@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registo</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<Style>
+.landing-page {
+	margin-top: 50px;
+}
+
+.image-page {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.landing-button {
+	float: right;
+}
+
+.image-class {
+	height: auto;
+	width: auto;
+	margin-bottom: 20px;
+}
+
+.end-of-page {
+	height: 100px;
+}
+</Style>
+</head>
+<body>
+	<div class="container my-3">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<form th:action="@{/home}" method="GET">
+						<div class="nav-class">
+							<button class="btn btn-light" type="submit">Home</button>
+						</div>
+					</form>
+					<form th:action="@{/dicas-alimentacao}" method="GET">
+						<div class="nav-class">
+							<button class="btn btn-light" type="submit">Dicas
+								alimentação</button>
+						</div>
+					</form>
+				</ul>
+				<form class="form-inline my-2 my-lg-0" th:action="@{/login}"
+					method="GET">
+					<button class="btn btn-light" type="submit">Logout</button>
+				</form>
+		</nav>
+		<div class="panel-body">
+			<div class="landing-page">
+				<div class="col-md-12">
+					<h2 class="card-title">Hábitos de uma vida saudável(SCARCITY)</h2>
+					<div class="news-post-content text-justify">
+						<div class="spacer-extra-small"></div>
+						<p>
+							<strong>Viver saudável</strong> também está nas nossas mãos. Não
+							julguemos que podemos comer quantidades excessivas de açúcar
+							todos os dias e que caso um dia, venhamos a padecer de diabetes
+							será, meramente, uma questão do destino e de má sorte. Não
+							podemos julgar que estando sujeitos, diariamente, a elevadas
+							doses de stress e de forma persistente não pagaremos um dia um
+							elevado preço por isso. Não achemos que podemos ser fumadores
+							durante anos e não colheremos problemas respiratórios e uma
+							degradação da nossa qualidade de vida.
+						</p>
+						<p>As nossas atitudes fazem-se refletir mais tarde ou mais
+							cedo na nossa saúde.</p>
+						<p>Obviamente, a nossa atitude perante a vida é um fator
+							determinante para a tornar mais saudável. Pense a vida pela
+							positiva e sinta-se bem consigo próprio antes de qualquer
+							atitude.</p>
+						<p>
+							Pelo menos, tenha em atenção duas coisas importantes. Em primeiro
+							lugar a <strong>nutrição</strong>. Uma <strong>boa
+								alimentação</strong> pode fazer muito mais pela sua saúde do que aquilo
+							que imagina. Nutrição e vida saudável são conceitos
+							indissociáveis.
+						</p>
+					</div>
+					<div class="news-post-content text-justify">
+						<div class="influence-principle"></div>
+						<h2 class="card-title">Conselho do George Clooney</h2>
+						<div class="image-class">
+							<img th:src="@{/images/george_clooney.jpg}" />
+						</div>
+						<p>
+							<strong>Hábitos saudáveis</strong> aprende-se da mesma forma que os menos saudáveis, praticando.
+						</p>
+						<p> George Clooney diz que o passo mais importante é a marcação de uma consulta, para analisarmos com um especialista
+							os maus hábitos que estavam presentes no seu dia-a-dia. 
+						</p>
+						<p>Depois, é uma questão de presistência, confiar na rotina e esperar que apareça os resultados, lembrando-se sempre que 
+							quanto maior é o esforço, maior é a recompensa.</p>
+					
+					</div>
+					<div class="landing-button">
+						<button type="button" class="btn btn-secondary btn-sm">Marque já a sua consulta!</button>
+					</div>
+					<div class="end-of-page"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+    $(function() {
+        $("#join_datepicker").datepicker({dateFormat:"yy-mm-dd"});
+        $("#retire_datepicker").datepicker({dateFormat:"yy-mm-dd"});
+    });
+</script>
+</body>
+</html>

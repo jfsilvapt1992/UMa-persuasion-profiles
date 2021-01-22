@@ -1,6 +1,8 @@
 package com.uma.mestrado.persuasive_profiles.controllers;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +39,15 @@ public class ViewLoginController
   }
 
   @PostMapping("/login")
-  public String doLogin(@RequestParam(name = "username") String aUsername, @RequestParam(name = "password") String aPassword, Model aModel)
+  public String doLogin(@RequestParam(name = "username") String aUsername, @RequestParam(name = "password") String aPassword, Model aModel, HttpSession session)
   {
     try
     {
       ResponseEntity<GetLoginResponse> loginResponse = backendApiService.getV1Login(aUsername, aPassword);
       if (loginResponse.getStatusCode().is2xxSuccessful())
       {
-        return "redirect:/index";
+        session.setAttribute("loginResponse", loginResponse.getBody());
+        return "redirect:/home";
       }
       else
       {

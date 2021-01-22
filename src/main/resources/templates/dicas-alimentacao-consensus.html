@@ -22,7 +22,7 @@
 }
 
 .image-class {
-	height: 500px;
+	height: auto;
 	width: auto;
 	margin-bottom: 20px;
 }
@@ -37,7 +37,7 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<form th:action="@{/registration}" method="GET">
+					<form th:action="@{/home}" method="GET">
 						<div class="nav-class">
 							<button class="btn btn-light" type="submit">Home</button>
 						</div>
@@ -56,14 +56,10 @@
 		</nav>
 		<div class="panel-body">
 			<div class="landing-page">
-				<div class="image-class">
-					<img th:src="@{/images/nutricao_home.jpg}" />
-				</div>
 				<div class="col-md-12">
-					<h2 class="card-title">Hábitos de uma vida saudável</h2>
+					<h2 class="card-title">Hábitos de uma vida saudável(CONSENSUS)</h2>
 					<div class="news-post-content text-justify">
 						<div class="spacer-extra-small"></div>
-						<h2 class="main-heading3 text-left">Alimentação</h2>
 						<p>
 							<strong>Viver saudável</strong> também está nas nossas mãos. Não
 							julguemos que podemos comer quantidades excessivas de açúcar
@@ -89,9 +85,24 @@
 							indissociáveis.
 						</p>
 					</div>
+					<div class="news-post-content text-justify">
+						<div class="influence-principle"></div>
+						<h2 class="card-title">Conselho do George Clooney</h2>
+						<div class="image-class">
+							<img th:src="@{/images/george_clooney.jpg}" />
+						</div>
+						<p>
+							<strong>Hábitos saudáveis</strong> aprende-se da mesma forma que os menos saudáveis, praticando.
+						</p>
+						<p> George Clooney diz que o passo mais importante é a marcação de uma consulta, para analisarmos com um especialista
+							os maus hábitos que estavam presentes no seu dia-a-dia. 
+						</p>
+						<p>Depois, é uma questão de presistência, confiar na rotina e esperar que apareça os resultados, lembrando-se sempre que 
+							quanto maior é o esforço, maior é a recompensa.</p>
+					
+					</div>
 					<div class="landing-button">
-						<button type="button" class="btn btn-secondary btn-sm">More
-							info</button>
+						<button type="button" class="btn btn-secondary btn-sm">Marque já a sua consulta!</button>
 					</div>
 					<div class="end-of-page"></div>
 				</div>
