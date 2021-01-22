@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.uma.mestrado.persuasive_profiles.models.CountryDto;
 import com.uma.mestrado.persuasive_profiles.models.GenderDto;
 import com.uma.mestrado.persuasive_profiles.models.POSTRegisterRequest;
-import com.uma.mestrado.persuasive_profiles.services.PersonService;
+import com.uma.mestrado.persuasive_profiles.services.BackendAPIServices;
 import com.uma.mestrado.persuasive_profiles.services.UtilsServices;
 
 
@@ -32,7 +32,7 @@ public class ViewRegistrationController
   @Autowired
   private UtilsServices utilsService;
   @Autowired
-  private PersonService personService;
+  private BackendAPIServices backendApiService;
 
   @GetMapping("/registration")
   public String showRegistForm(@ModelAttribute(name = "registerReq") POSTRegisterRequest aRegisterRequest, Model aModel)
@@ -70,8 +70,9 @@ public class ViewRegistrationController
       }
 
       ResponseEntity<Void> register =
-      personService.postRegister(aRequest.getName(), aRequest.getAge(), aRequest.getGenderId(), aRequest.getCountryId(),
-      aRequest.getWeight(), aRequest.getHeight(), aRequest.isHadNutricionalConsult(), aRequest.getUsername(), aRequest.getPwd());
+      backendApiService.postRegister(aRequest.getName(), Integer.parseInt(aRequest.getAge()), aRequest.getGenderId(), aRequest.getCountryId(),
+      Integer.parseInt(aRequest.getWeight()), Integer.parseInt(aRequest.getHeight()), aRequest.isHadNutricionalConsult(), aRequest.getUsername(),
+      aRequest.getPwd());
 
       if (!register.getStatusCode().is2xxSuccessful())
       {

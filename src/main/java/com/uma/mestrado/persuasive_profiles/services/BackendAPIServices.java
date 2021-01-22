@@ -1,4 +1,4 @@
-package com.uma.mestrado.persuasive_profiles.controllers;
+package com.uma.mestrado.persuasive_profiles.services;
 
 
 import org.slf4j.Logger;
@@ -7,25 +7,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uma.mestrado.persuasive_profiles.services.PersonService;
-import com.uma.mestrado.persuasive_profiles.services.PersuasionProfileService;
-
 import swaggerCodegen.api.V1Api;
 import swaggerCodegen.models.GetInfluencePrincipleResponse;
 import swaggerCodegen.models.GetLoginResponse;
 
 
 @RestController
-public class BackendAPIControllers implements V1Api
+public class BackendAPIServices implements V1Api
 {
 
-  Logger logger = LoggerFactory.getLogger(BackendAPIControllers.class);
+  Logger logger = LoggerFactory.getLogger(BackendAPIServices.class);
 
   @Autowired
   private PersonService personServices;
 
   @Autowired
   private PersuasionProfileService persuasionProfileService;
+
+  @Autowired
+  private UtilsServices utilsService;
 
   @Override
   public ResponseEntity<Void> postRegister(String aName, Integer aAge, Integer aGenderId, Integer aCountryId, Integer aWeight, Integer aHeight,

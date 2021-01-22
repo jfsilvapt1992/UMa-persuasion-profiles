@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.uma.mestrado.persuasive_profiles.algorithm.ExplicitAlgorithm;
 import com.uma.mestrado.persuasive_profiles.algorithm.ImplicitAlgorithm;
@@ -20,7 +20,7 @@ import swaggerCodegen.models.BasicError;
 import swaggerCodegen.models.GetInfluencePrincipleResponse;
 
 
-@Service(value = "PersuasionProfileService")
+@Component(value = "PersuasionProfileService")
 public class PersuasionProfileService
 {
 

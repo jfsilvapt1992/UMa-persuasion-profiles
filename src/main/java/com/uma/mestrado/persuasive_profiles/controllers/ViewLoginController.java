@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.uma.mestrado.persuasive_profiles.services.PersonService;
+import com.uma.mestrado.persuasive_profiles.services.BackendAPIServices;
 
 import swaggerCodegen.models.GetLoginResponse;
 
@@ -23,7 +23,7 @@ public class ViewLoginController
   Logger logger = LoggerFactory.getLogger(ViewLoginController.class);
 
   @Autowired
-  private PersonService personService;
+  private BackendAPIServices backendApiService;
 
   @GetMapping(
   {
@@ -41,7 +41,7 @@ public class ViewLoginController
   {
     try
     {
-      ResponseEntity<GetLoginResponse> loginResponse = personService.getV1Login(aUsername, aPassword);
+      ResponseEntity<GetLoginResponse> loginResponse = backendApiService.getV1Login(aUsername, aPassword);
       if (loginResponse.getStatusCode().is2xxSuccessful())
       {
         return "redirect:/index";
