@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.uma.mestrado.persuasive_profiles.enums.InfluencePrincipleEnum;
+import com.uma.mestrado.persuasive_profiles.models.PersuasionProfileDto;
 
 import swaggerCodegen.models.GetInfluencePrincipleResponse;
 import swaggerCodegen.models.GetLoginResponse;
@@ -22,7 +23,7 @@ public class ViewDicasAlimentacaoController
 {
 
   Logger logger = LoggerFactory.getLogger(ViewDicasAlimentacaoController.class);
-  
+
   @Autowired
   private BackendAPIServices backendApiService;
 
@@ -34,8 +35,8 @@ public class ViewDicasAlimentacaoController
   private String getDicasAlimentacao(Model aModel, HttpSession aSession)
   {
     String redirect = "";
-
-    InfluencePrincipleEnum ipEnum = InfluencePrincipleEnum.getByName(getInfluencePrincipleFromSession(aSession));
+    GetInfluencePrincipleResponse selectedPrinciple = getInfluencePrincipleFromSession(aSession);
+    InfluencePrincipleEnum ipEnum = InfluencePrincipleEnum.getByName(selectedPrinciple.getName());
     switch (ipEnum)
     {
       case AUTHORITY:
@@ -52,16 +53,15 @@ public class ViewDicasAlimentacaoController
         break;
       default:
         break;
-
     }
+    aSession.setAttribute("activePrinciple", new PersuasionProfileDto(selectedPrinciple.getId(), selectedPrinciple.getName()));
     return redirect;
   }
 
-  private String getInfluencePrincipleFromSession(HttpSession aSession)
+  private GetInfluencePrincipleResponse getInfluencePrincipleFromSession(HttpSession aSession)
   {
     GetLoginResponse loginData = (GetLoginResponse) aSession.getAttribute("loginResponse");
     ResponseEntity<GetInfluencePrincipleResponse> ipSelected = backendApiService.getPersonInfluencePrinciple(loginData.getPersonId());
-    GetInfluencePrincipleResponse ipData = ipSelected.getBody();
-    return ipData.getName();
+    return ipSelected.getBody();
   }
 }

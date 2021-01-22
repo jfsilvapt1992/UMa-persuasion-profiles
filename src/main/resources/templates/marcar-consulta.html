@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registo</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<Style>
+.landing-page {
+	margin-top: 50px;
+}
+
+.image-page {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.landing-button {
+	float: right;
+}
+
+.image-class {
+	height: auto;
+	width: auto;
+	margin-bottom: 20px;
+}
+
+.end-of-page {
+	height: 100px;
+}
+</Style>
+</head>
+<body>
+	<div class="container my-3">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<form th:action="@{/home}" method="GET">
+						<div class="nav-class">
+							<button class="btn btn-light" type="submit">Home</button>
+						</div>
+					</form>
+					<form th:action="@{/dicas-alimentacao}" method="GET">
+						<div class="nav-class">
+							<button class="btn btn-light" type="submit">Dicas
+								alimentação</button>
+						</div>
+					</form>
+				</ul>
+				<form class="form-inline my-2 my-lg-0" th:action="@{/login}"
+					method="GET">
+					<button class="btn btn-light" type="submit">Logout</button>
+				</form>
+		</nav>
+		<div class="panel-body">
+			<div class="landing-page">
+				<div class="col-md-12">
+					<h2 class="card-title">Marcação de consulta</h2>
+					<div class="news-post-content text-justify">
+						<div class="spacer-extra-small"></div>
+						<p>
+							
+						</p>
+						<p>
+							Pedimos desculpa mas esta funcionalidade encontra-se em desenvolvimento.
+						</p>
+					</div>
+					<div class="end-of-page"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+    $(function() {
+        $("#join_datepicker").datepicker({dateFormat:"yy-mm-dd"});
+        $("#retire_datepicker").datepicker({dateFormat:"yy-mm-dd"});
+    });
+</script>
+</body>
+</html>

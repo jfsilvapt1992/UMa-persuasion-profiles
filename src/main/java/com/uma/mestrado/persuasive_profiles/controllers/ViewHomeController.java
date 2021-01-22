@@ -16,8 +16,6 @@ public class ViewHomeController
 
   Logger logger = LoggerFactory.getLogger(ViewHomeController.class);
 
-  // @Autowired
-  // private BackendAPIServices backendApiService;a
 
   @GetMapping(
   {

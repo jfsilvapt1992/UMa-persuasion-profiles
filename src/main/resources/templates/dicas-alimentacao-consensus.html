@@ -92,18 +92,23 @@
 							<img th:src="@{/images/george_clooney.jpg}" />
 						</div>
 						<p>
-							<strong>Hábitos saudáveis</strong> aprende-se da mesma forma que os menos saudáveis, praticando.
+							<strong>Hábitos saudáveis</strong> aprende-se da mesma forma que
+							os menos saudáveis, praticando.
 						</p>
-						<p> George Clooney diz que o passo mais importante é a marcação de uma consulta, para analisarmos com um especialista
-							os maus hábitos que estavam presentes no seu dia-a-dia. 
-						</p>
-						<p>Depois, é uma questão de presistência, confiar na rotina e esperar que apareça os resultados, lembrando-se sempre que 
-							quanto maior é o esforço, maior é a recompensa.</p>
-					
+						<p>George Clooney diz que o passo mais importante é a marcação
+							de uma consulta, para analisarmos com um especialista os maus
+							hábitos que estavam presentes no seu dia-a-dia.</p>
+						<p>Depois, é uma questão de presistência, confiar na rotina e
+							esperar que apareça os resultados, lembrando-se sempre que quanto
+							maior é o esforço, maior é a recompensa.</p>
+
 					</div>
-					<div class="landing-button">
-						<button type="button" class="btn btn-secondary btn-sm">Marque já a sua consulta!</button>
-					</div>
+					<form th:action="@{/home}" method="GET">
+						<div class="landing-button">
+							<button class="btn btn-secondary btn-sm"
+								type="submit">Marque já a sua consulta!</button>
+						</div>
+					</form>
 					<div class="end-of-page"></div>
 				</div>
 			</div>
