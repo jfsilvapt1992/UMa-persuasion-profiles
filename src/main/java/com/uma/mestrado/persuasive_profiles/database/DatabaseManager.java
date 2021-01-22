@@ -1,6 +1,7 @@
 package com.uma.mestrado.persuasive_profiles.database;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ import com.uma.mestrado.persuasive_profiles.database.entities.Gender;
 import com.uma.mestrado.persuasive_profiles.database.entities.Historic;
 import com.uma.mestrado.persuasive_profiles.database.entities.InfluencePrinciple;
 import com.uma.mestrado.persuasive_profiles.database.entities.Person;
+import com.uma.mestrado.persuasive_profiles.database.entities.QHistoric;
 import com.uma.mestrado.persuasive_profiles.database.entities.QInfluencePrinciple;
 import com.uma.mestrado.persuasive_profiles.database.entities.QPerson;
 import com.uma.mestrado.persuasive_profiles.database.entities.Users;
@@ -29,6 +31,7 @@ import com.uma.mestrado.persuasive_profiles.exceptions.DatabaseException;
 import com.uma.mestrado.persuasive_profiles.models.CountryDto;
 import com.uma.mestrado.persuasive_profiles.models.GETLoginRequest;
 import com.uma.mestrado.persuasive_profiles.models.GenderDto;
+import com.uma.mestrado.persuasive_profiles.models.HistoricDto;
 import com.uma.mestrado.persuasive_profiles.models.LoginOutput;
 import com.uma.mestrado.persuasive_profiles.models.POSTHistoricRequest;
 import com.uma.mestrado.persuasive_profiles.models.POSTRegisterRequest;
@@ -186,6 +189,49 @@ public class DatabaseManager
       List<Gender> genders = genderDAO.findAll();
 
       return genders.stream().map(temp -> new GenderDto(temp.getId(), temp.getType())).collect(Collectors.toList());
+    }
+    catch (@SuppressWarnings("unused")
+    Exception ex)
+    {
+      throw new DatabaseException("Error selecting genders");
+    }
+  }
+
+  @Transactional
+  public HistoricDto selectAllHistoric(int aPersonId) throws DatabaseException
+  {
+    try
+    {
+      List<Historic> historicList = historicDAO.findAll(QHistoric.historic.person.id.eq(aPersonId));
+
+      List<Integer> influencePrinciplesIds =
+      historicList.stream().map(curr -> curr.getInfluencePrinciple().getId()).collect(Collectors.toList()).stream().distinct().collect(Collectors.toList());
+
+      List<PersuasionProfileDto> persuasionsProfile = new ArrayList<PersuasionProfileDto>();
+      for (int tempId : influencePrinciplesIds)
+      {
+        PersuasionProfileDto tempPersuasionProfile = new PersuasionProfileDto();
+        tempPersuasionProfile.setId(tempId);
+        tempPersuasionProfile.setName(influencePrincipleDAO.getOne(tempId).getName());
+        tempPersuasionProfile.setTotal(historicList.size());
+
+        List<Historic> tempHistoricList =
+        historicDAO.findAll(QHistoric.historic.person.id.eq(aPersonId).and(QHistoric.historic.influencePrinciple.id.eq(tempId)));
+
+        for (Historic tempHistoric : tempHistoricList)
+        {
+          if (tempHistoric.isWasInfluenced())
+          {
+            tempPersuasionProfile.increaseTotalInflueced();
+          }
+        }
+        persuasionsProfile.add(tempPersuasionProfile);
+      }
+
+      Person person = personDAO.getOne(aPersonId);
+      PersonDto personDto = new PersonDto(person.getName(), person.getAge(), person.getWeight(), person.getHeight());
+
+      return new HistoricDto(personDto, persuasionsProfile, historicList.size());
     }
     catch (@SuppressWarnings("unused")
     Exception ex)

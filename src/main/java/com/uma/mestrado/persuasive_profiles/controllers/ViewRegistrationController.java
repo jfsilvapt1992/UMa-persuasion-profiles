@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.uma.mestrado.persuasive_profiles.models.CountryDto;
 import com.uma.mestrado.persuasive_profiles.models.GenderDto;
 import com.uma.mestrado.persuasive_profiles.models.POSTRegisterRequest;
-import com.uma.mestrado.persuasive_profiles.services.BackendAPIServices;
 import com.uma.mestrado.persuasive_profiles.services.UtilsServices;
 
 

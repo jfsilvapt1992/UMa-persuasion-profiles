@@ -68,7 +68,7 @@ public class PersuasionProfileService
         break;
       case IMPLICIT:
         logger.info("Selected IMPLICIT algorithm");
-        persuasionProfileAlgorithm = new ImplicitAlgorithm();
+        persuasionProfileAlgorithm = new ImplicitAlgorithm(dbManager, aPersonId);
         break;
       case RANDOM:
         logger.info("Selected RANDOM algorithm");
