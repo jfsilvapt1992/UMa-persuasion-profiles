@@ -7,7 +7,17 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+<Style>
+body {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: #f5f5f5;
+}
+</Style>
 </head>
 <body>
 	<div class="container my-3">
@@ -19,16 +29,11 @@
 					<div class="form-row">
 						<div class="col-md-6 form-group">
 							<label>Nome</label> <input type="text" class="form-control"
-								th:field="*{name}">
-							<p class="alert alert-danger"
-								th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-								role="alert"> Nome em falta
+								th:field="*{name}" required >
 						</div>
 						<div class="col-md-6 form-group">
 							<label>Age</label> <input type="text" class="form-control"
-								th:field="*{age}">
-							<p class="alert alert-danger" th:if="${#fields.hasErrors('age')}"
-								th:errors="*{age}" role="alert"> Idade inválida (> 5 anos) 
+								th:field="*{age}" required>
 						</div>
 						<div class="col-md-3 form-group">
 							<label>Países:</label> <select class="form-control"
@@ -47,32 +52,24 @@
 							</select>
 						</div>
 						<div class="col-md-6 form-group">
-							<label>Peso</label> <input type="text" class="form-control"
-								th:field="*{weight}">
-							<p class="alert alert-danger"
-								th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"
-								role="alert"> Peso incorrecto (> 10kg)
+							<label>Peso (kg)</label> <input type="text" class="form-control"
+								th:field="*{weight}" required>
+						
 						</div>
 						<div class="col-md-6 form-group">
-							<label>Altura</label> <input type="text" class="form-control"
-								th:field="*{height}">
-							<p class="alert alert-danger"
-								th:if="${#fields.hasErrors('height')}" th:errors="*{height}"
-								role="alert"> Altura incorrecta (> 100cm)
+							<label>Altura (cm)</label> <input type="text" class="form-control"
+								th:field="*{height}" required>
+					
 						</div>
 						<div class="col-md-6 form-group">
 							<label>Username</label> <input type="text" class="form-control"
-								th:field="*{username}">
-							<p class="alert alert-danger"
-								th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
-								role="alert"> Password em falta
+								th:field="*{username}" required>
+				
 						</div>
 						<div class="col-md-6 form-group">
-							<label>Password</label> <input type="text" class="form-control"
-								th:field="*{pwd}">
-							<p class="alert alert-danger"
-								th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
-								role="alert"> Username em falta
+							<label>Password</label> <input type="password" is="password" name="password"
+							class="form-control" placeholder="Password" required th:field="*{pwd}">
+						
 						</div>
 						<div class="col-md-6 form-group">
 							<strong>Alguma vez realizou consulta nutricional?</strong>
