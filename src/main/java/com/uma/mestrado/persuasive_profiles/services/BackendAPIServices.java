@@ -24,9 +24,6 @@ public class BackendAPIServices implements V1Api
   @Autowired
   private PersuasionProfileService persuasionProfileService;
 
-  @Autowired
-  private UtilsServices utilsService;
-
   @Override
   public ResponseEntity<Void> postRegister(String aName, Integer aAge, Integer aGenderId, Integer aCountryId, Integer aWeight, Integer aHeight,
   Boolean aHadNutricionalConsult, String aUsername, String aPassword)
