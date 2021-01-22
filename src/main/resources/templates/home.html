@@ -12,53 +12,153 @@
 	margin-top: 50px;
 }
 
-.home-class {
-	float: left;
+.image-page {
+	margin-top: 10px;
+	margin-bottom: 20px;
 }
 
-.logout-class {
+.landing-button {
 	float: right;
+}
+
+.image-class {
+	height: 500px;
+	width: auto;
+	margin-bottom: 20px;
+}
+
+.end-of-page {
+	height: 100px;
 }
 </Style>
 </head>
 <body>
 	<div class="container my-3">
-		<nav class="navbar navbar-light bg-light justify-content-between">
-
-			<form th:action="@{/registration}" method="GET">
-				<div class="home-class">
-					<button class="btn btn-light" type="submit">Home</button>
-				</div>
-			</form>
-			<form th:action="@{/login}" method="GET">
-				<div class="logout-class">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<form th:action="@{/registration}" method="GET">
+						<div class="nav-class">
+							<button class="btn btn-light" type="submit">Home</button>
+						</div>
+					</form>
+					<form th:action="@{/dicas-alimentacao}" method="GET">
+						<div class="nav-class">
+							<button class="btn btn-light" type="submit">Dicas
+								alimentação</button>
+						</div>
+					</form>
+				</ul>
+				<form class="form-inline my-2 my-lg-0" th:action="@{/login}"
+					method="GET">
 					<button class="btn btn-light" type="submit">Logout</button>
-				</div>
-			</form>
+				</form>
 		</nav>
+
 		<div class="panel-body">
 			<div class="landing-page">
+				<div class="image-class">
+					<img th:src="@{/images/nutricao_home.jpg}" />
+				</div>
 				<div class="col-md-12">
-					<p class="welcome-text">Lorem ipsum dolor sit amet,
-						consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-						Aenean massa. Cum sociis natoque penatibus et magnis dis
-						parturient montes, nascetur ridiculus mus. Donec quam felis,
-						ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat
-						massa quis enim. Donec pede justo, fringilla vel, aliquet nec,
-						vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-						venenatis vitae, justo. Nullam dictum felis eu pede mollis
-						pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper
-						nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
-						porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem
-						ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus
-						viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean
-						imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper
-						ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus,
-						tellus eget condimentum rhoncus, sem quam semper libero, sit amet
-						adipiscing sem neque sed ipsum.</p>
+					<h2 class="card-title">Hábitos de uma vida saudável</h2>
+					<div class="news-post-content text-justify">
+						<p>
+							Uma <strong>vida saudável</strong> é seguramente o maior desejo
+							de todos nós. Afinal, sem saúde a vida não tem o
+							mesmo&nbsp;significado. O melhor caminho para se sentir feliz,
+							enérgico e saudável no futuro é levar uma vida feliz, enérgica e
+							saudável no presente. Os benefícios e os prazeres produzidos são
+							simultaneamente imediatos e a longo prazo.
+						</p>
+						<p>Estamos cada vez mais a caminhar num sentido, em
+							que&nbsp;as pessoas se apercebem, finalmente, que ser saudável é
+							muito mais do que não estar doente.</p>
+						<p>
+							Não podemos permitir que a vida passe por nós sem que a vivamos
+							com energia e estímulos que nos transmitam <strong>felicidade</strong>.
+							Devemos tornar a vida apetecível e estimulante, bastando para
+							isso, que tenhamos uma&nbsp;atitude assertiva, ativa e
+							participativa perante a mesma.
+						</p>
+						<p>Muitas vezes, não conseguimos deter o trajeto da vida. Pese
+							embora esse facto, a vida também é fruto das nossas atitudes e
+							comportamentos. Nós somos, por isso, o resultado das nossas
+							vivências.</p>
+						<div class="spacer-extra-small"></div>
+						<h2 class="main-heading3 text-left">Como ter uma vida
+							saudável?</h2>
+						<p>“O que fazer para ser saudável?”, “como começar uma vida
+							saudável?”, ou “como ter uma vida saudável e feliz?”, são
+							questões colocadas, frequentemente, pelas pessoas.</p>
+						<p>
+							Debrucemo-nos, primeiramente, sobre a questão: <strong>o
+								que é ser saudável?</strong> Segundo a organização Mundial de Saúde (OMS)
+							saúde é “o bem-estar físico, mental e social, mais do que a mera
+							ausência de doença…”. Ou seja, ser saudável não é apenas a
+							ausência de doença, mas essencialmente o bem estar físico e
+							mental do indivíduo. Não é por acaso que a OMS define a saúde
+							desta forma, dando à palavra um significado muito mais&nbsp;amplo
+							do que apenas o simples antónimo de doença.
+						</p>
+						<p>Ainda que a saúde apareça, naturalmente, associada à
+							palavra medicina, esta vai muito para além do significado que,
+							muitas vezes, o senso comum lhe atribui, associando-a apenas,
+							normalmente à medicina curativa. A medicina é, todavia, bem mais
+							do que isso, pois a sua preocupação maior é a prevenção de
+							doenças.</p>
+						<p>Os médicos estão conscientes que a prevenção é fundamental
+							num sistema de saúde que se quer “saudável”.</p>
+						<p>
+							Se quiser saber mais sobre este tema, leia neste <a
+								href="/pt/blog-saude/medicina-preventiva/"
+								title="Medicina preventiva">blog sobre medicina preventiva</a>.
+						</p>
+						<p>O estilo de vida das pessoas, a má alimentação, o stress,
+							entre outros fatores, estão a contribuir, fortemente, para
+							agudizar os problemas. Poderíamos citar, como exemplos, a
+							diabetes e a hipertensão arterial, doenças muito associadas aos
+							hábitos das populações modernas.</p>
+						<p>
+							Muitos dos problemas que a medicina moderna ajuda a solucionar
+							poderiam ser, facilmente, evitados se fossem seguidas algumas das
+							recomendações essências à prática de um <strong>estilo
+								de vida saudável</strong>.
+						</p>
+						<p>
+							Mudar hábitos e condutas é imperativo e inadiável. Não queremos
+							dizer com isto que devamos seguir à risca, todas as <strong>regras
+								para obter uma vida saudável</strong>, como se tratasse de um plano
+							rígido, penoso e até castrador para as pessoas. A vida deve ser
+							vivida com intensidade e com prazer pelo que nunca devemos
+							tornar-nos em meros aprisionados a atitudes/ comportamentos que
+							não obstante serem mais saudáveis, seriam simultaneamente penosas
+							e limitadoras.
+						</p>
+						<p>A vida é feita de opções. Tome as suas em consciência,
+							encontre o equilíbrio entre os prós e contras dos seus gostos
+							pessoais, rumo a uma vida mais saudável e sem esquecer em última
+							análise, que é a sua qualidade de vida que pretende melhorar.</p>
+						<p>Falamos de mudar atitudes, que nos estimulem e nos conduzam
+							à felicidade, e concomitantemente melhorem a nossa condição de
+							saúde. Tal nem sempre é possível, é certo, mas numa larga maioria
+							dos casos, é perfeitamente atingível.</p>
+						<p>A título de exemplo, imagine-se numa simples caminhada na
+							natureza ou a saborear a sua peça de fruta preferida. São dois
+							exemplos simples em que é completamente viável, em simultâneo,
+							disfrutar da vida e melhorar a condição de saúde.</p>
+						<div class="spacer-extra-small"></div>
+
+					</div>
+					<div class="landing-button">
+						<button type="button" class="btn btn-secondary btn-sm">More
+							info</button>
+					</div>
+					<div class="end-of-page"></div>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	</div>
 	<script
