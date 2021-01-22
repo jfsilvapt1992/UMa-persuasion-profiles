@@ -8,15 +8,23 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <Style>
-body {
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-align: center;
-	align-items: center;
-	padding-top: 40px;
-	padding-bottom: 40px;
-	background-color: #f5f5f5;
+h2 {
+	text-align: center
 }
+
+.center-button {
+	margin-left: 45%;
+	margin-right: 50%;
+}
+
+.row {
+  margin-top: 200px;
+	height: 30em;
+	position: relative;
+	 align-items: center;
+	 justify-content: center;
+}
+
 </Style>
 </head>
 <body>
@@ -29,7 +37,7 @@ body {
 					<div class="form-row">
 						<div class="col-md-6 form-group">
 							<label>Nome</label> <input type="text" class="form-control"
-								th:field="*{name}" required >
+								th:field="*{name}" required>
 						</div>
 						<div class="col-md-6 form-group">
 							<label>Age</label> <input type="text" class="form-control"
@@ -54,22 +62,23 @@ body {
 						<div class="col-md-6 form-group">
 							<label>Peso (kg)</label> <input type="text" class="form-control"
 								th:field="*{weight}" required>
-						
+
 						</div>
 						<div class="col-md-6 form-group">
-							<label>Altura (cm)</label> <input type="text" class="form-control"
-								th:field="*{height}" required>
-					
+							<label>Altura (cm)</label> <input type="text"
+								class="form-control" th:field="*{height}" required>
+
 						</div>
 						<div class="col-md-6 form-group">
 							<label>Username</label> <input type="text" class="form-control"
 								th:field="*{username}" required>
-				
+
 						</div>
 						<div class="col-md-6 form-group">
-							<label>Password</label> <input type="password" is="password" name="password"
-							class="form-control" placeholder="Password" required th:field="*{pwd}">
-						
+							<label>Password</label> <input type="password" is="password"
+								name="password" class="form-control" placeholder="Password"
+								required th:field="*{pwd}">
+
 						</div>
 						<div class="col-md-6 form-group">
 							<strong>Alguma vez realizou consulta nutricional?</strong>
@@ -85,7 +94,9 @@ body {
 							</div>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
+					<div class="center-button">
+						<button type="submit" class="btn btn-primary btn-lg">Save</button>
+					</div>
 				</form>
 			</div>
 		</div>
