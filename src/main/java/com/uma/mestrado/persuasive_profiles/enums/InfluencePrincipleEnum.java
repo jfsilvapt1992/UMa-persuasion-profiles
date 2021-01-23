@@ -1,6 +1,10 @@
 package com.uma.mestrado.persuasive_profiles.enums;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public enum InfluencePrincipleEnum
 {
   AUTHORITY(1.5),
@@ -33,6 +37,16 @@ public enum InfluencePrincipleEnum
       }
     }
     return response;
+  }
+
+  public static List<String> getAllNames()
+  {
+    List<String> list = new ArrayList<String>();
+    for (InfluencePrincipleEnum current : InfluencePrincipleEnum.values())
+    {
+      list.add(current.name());
+    }
+    return list;
   }
 
   public double getPriority()

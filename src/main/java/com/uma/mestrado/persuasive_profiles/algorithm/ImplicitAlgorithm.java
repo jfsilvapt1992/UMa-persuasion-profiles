@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.uma.mestrado.persuasive_profiles.database.DatabaseManager;
 import com.uma.mestrado.persuasive_profiles.enums.InfluencePrincipleEnum;
+import com.uma.mestrado.persuasive_profiles.exceptions.DatabaseException;
 import com.uma.mestrado.persuasive_profiles.models.HistoricDto;
 import com.uma.mestrado.persuasive_profiles.models.PersuasionProfileDto;
 
@@ -45,6 +46,8 @@ public class ImplicitAlgorithm implements PersuasionProfileAlgorithm
         ratios.put(profile, getFormulaResult(profile, historicDto.getTotalHistoric()));
       }
 
+      validateMissingPrinciple(ratios, historicDto.getTotalHistoric());
+
       response = selectHigherRatio(ratios);
 
       logger.info("Executed implicit algorithm succesffully!!!");
@@ -75,6 +78,20 @@ public class ImplicitAlgorithm implements PersuasionProfileAlgorithm
     logger.info("Influence principle choosed: " + selectedProfile.getName());
     logger.info("#######################################################################");
     return selectedProfile;
+  }
+
+  private void validateMissingPrinciple(Map<PersuasionProfileDto, Double> aRatios, int aTotalHistoric) throws DatabaseException
+  {
+    for (String temp : InfluencePrincipleEnum.getAllNames())
+    {
+      if (!aRatios.entrySet().stream().anyMatch(t -> t.getKey().getName().equalsIgnoreCase(temp)))
+      {
+        PersuasionProfileDto currentPrinciple = dbManager.selectInfluencePrinciple(temp);
+        currentPrinciple.setTotal(0);
+        currentPrinciple.setTotalInfluenced(0);
+        aRatios.put(currentPrinciple, getFormulaResult(currentPrinciple, aTotalHistoric));
+      }
+    }
   }
 
   private Double getFormulaResult(PersuasionProfileDto aPersuasionProfileDto, int aTotalHistoric)
