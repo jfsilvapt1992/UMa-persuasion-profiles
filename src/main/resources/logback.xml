@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property resource="application.properties" />
+	
+	<logger name="org.springframework.boot" level="info"></logger> 
+	<logger name="org.hibernate" level="info"></logger>
+	
+	<appender name="CONSOLE"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>
+				%d{dd-MM-yyyy HH:mm:ss.SSS} - ${loggingApplicationName} - %logger{36}.%M - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${loggingFile}/info_logs.log</file>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+			<encoder
+				class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+				<Pattern>
+					%d{dd-MM-yyyy HH:mm:ss.SSS} - ${loggingApplicationName} - %logger{36}.%M - %msg%n
+				</Pattern>
+			</encoder>
+	
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${loggingFile}/archived/info/info_%d{dd-MM-yyyy}_%i.zip</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+			<maxFileSize>${maxLoggingSize}</maxFileSize>
+			<totalSizeCap>${totalSize}</totalSizeCap>
+		</rollingPolicy>
+	</appender> 
+
+	<appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${loggingFile}/debug_logs.log</file>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+			<encoder
+				class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+				<Pattern>
+					%d{dd-MM-yyyy HH:mm:ss.SSS} - ${loggingApplicationName} - %logger{36}.%M - %msg%n
+				</Pattern>
+			</encoder>
+	
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${loggingFile}/archived/debug/debug_%d{dd-MM-yyyy}_%i.zip</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+			<maxFileSize>${maxLoggingSize}</maxFileSize>
+			<totalSizeCap>${totalSize}</totalSizeCap>
+		</rollingPolicy>
+	</appender> 
+
+		<appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${loggingFile}/error_logs.log</file>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+			<encoder
+				class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+				<Pattern>
+					%d{dd-MM-yyyy HH:mm:ss.SSS} - ${loggingApplicationName} - [%thread] - %-5level - %logger{36}.%M - %msg%n
+				</Pattern>
+			</encoder>
+	
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${loggingFile}/archived/error/error_%d{dd-MM-yyyy}_%i.zip</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+			<maxFileSize>${maxLoggingSize}</maxFileSize>
+			<totalSizeCap>${totalSize}</totalSizeCap>
+		</rollingPolicy>
+	</appender> 
+	
+	<root level="DEBUG">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="DEBUG" />
+		<appender-ref ref="ERROR" />
+	</root>
+</configuration>
