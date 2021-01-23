@@ -34,9 +34,37 @@ public class ViewDicasAlimentacaoController
   })
   private String getDicasAlimentacao(Model aModel, HttpSession aSession)
   {
+    try
+    {
+
+      GetLoginResponse loginData = (GetLoginResponse) aSession.getAttribute("loginResponse");
+
+      GetInfluencePrincipleResponse selectedPrinciple = getInfluencePrincipleFromSession(loginData);
+
+      backendApiService.postHistoric(loginData.getPersonId(), selectedPrinciple.getId(), false);
+
+      aSession.setAttribute("activePrinciple", new PersuasionProfileDto(selectedPrinciple.getId(), selectedPrinciple.getName()));
+
+      return getPageToRedirect(selectedPrinciple);
+    }
+    catch (Exception e)
+    {
+      logger.error("", e);
+      return "redirect:/error500";
+    }
+
+  }
+
+  private GetInfluencePrincipleResponse getInfluencePrincipleFromSession(GetLoginResponse aLoginData)
+  {
+    ResponseEntity<GetInfluencePrincipleResponse> ipSelected = backendApiService.getPersonInfluencePrinciple(aLoginData.getPersonId());
+    return ipSelected.getBody();
+  }
+
+  private String getPageToRedirect(GetInfluencePrincipleResponse aSelectedPrinciple)
+  {
     String redirect = "";
-    GetInfluencePrincipleResponse selectedPrinciple = getInfluencePrincipleFromSession(aSession);
-    InfluencePrincipleEnum ipEnum = InfluencePrincipleEnum.getByName(selectedPrinciple.getName());
+    InfluencePrincipleEnum ipEnum = InfluencePrincipleEnum.getByName(aSelectedPrinciple.getName());
     switch (ipEnum)
     {
       case AUTHORITY:
@@ -54,14 +82,6 @@ public class ViewDicasAlimentacaoController
       default:
         break;
     }
-    aSession.setAttribute("activePrinciple", new PersuasionProfileDto(selectedPrinciple.getId(), selectedPrinciple.getName()));
     return redirect;
-  }
-
-  private GetInfluencePrincipleResponse getInfluencePrincipleFromSession(HttpSession aSession)
-  {
-    GetLoginResponse loginData = (GetLoginResponse) aSession.getAttribute("loginResponse");
-    ResponseEntity<GetInfluencePrincipleResponse> ipSelected = backendApiService.getPersonInfluencePrinciple(loginData.getPersonId());
-    return ipSelected.getBody();
   }
 }

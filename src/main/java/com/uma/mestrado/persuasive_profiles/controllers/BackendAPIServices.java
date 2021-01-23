@@ -53,4 +53,10 @@ public class BackendAPIServices implements V1Api
   {
     return persuasionProfileService.getPersonInfluencePrinciple(aPersonId);
   }
+
+  public ResponseEntity<Void> putHistoric(Integer aPersonId, Integer aInfluencePrincipleId, Boolean aWasInfluenced)
+  {
+    return personServices.postHistoric(aPersonId, aInfluencePrincipleId, aWasInfluenced);
+  }
+
 }
