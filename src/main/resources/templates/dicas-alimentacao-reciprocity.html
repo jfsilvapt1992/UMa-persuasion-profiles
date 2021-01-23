@@ -19,6 +19,8 @@
 
 .landing-button {
 	float: right;
+	height: auto;
+	width: auto;
 }
 
 .image-class {
@@ -30,6 +32,22 @@
 .end-of-page {
 	height: 100px;
 }
+
+.scarcity-label {
+	margin-top: 5px;
+	height: auto;
+	width: auto;
+	margin-left: 15px;
+	color:red;
+}
+
+.scarcity-label-2 {
+	height: auto;
+	width: auto;
+	margin-left: 25px;
+	color:red;
+}
+
 </Style>
 </head>
 <body>
@@ -87,53 +105,40 @@
 					</div>
 					<div class="news-post-content text-justify">
 						<div class="influence-principle"></div>
-						<h2 class="card-title">Testemunho: «Decidi mudar de vida»</h2>
+						<h2 class="card-title">Qual a importância do nutricionista?</h2>
 						<div class="image-class">
-							<img th:src="@{/images/healthy_people.jpg}" />
+							<img th:src="@{/images/roda_alimentar.jpg}" />
 						</div>
-						<p>
-							<Strong>Clara</Strong>, mulher 36 anos, recorreu à consulta
-							nutrcional em Abril de 2019 com o objetivo de perder peso mas
-							também melhorar a sua alimentação/estilo de vida. Sentia-se mal
-							com o seu corpo e tinha consciência que a causa do seu excesso de
-							peso resumia-se aos seus maus hábitos alimentares e sedentarismo.
-
-							Nunca teve problemas de saúde relevantes, contudo relatava falta
-							de energia, cansaço cognitivo e trânsito intestinal irregular. No
-							fim diz que foi um passo passo dado extremamente importante e
-							hoje sente-se com tanta energia que nem uma jovem com 18 anos!
-						</p>
-						<p>
-							<Strong>Ana</Strong>, mulher com 57 anos, recorreu à consulta
-							nutricional em Julho de 2018, com a esperança que pudesse ser
-							ajudada na luta contra a sua doença inflamatória do intestino,
-							uma doença cada vez mais comum nos dias de hoje. Depois de
-							aprender a seleccionar e identificar os alimentos que agravavam a
-							sua doença, hoje em dia Ana diz que consegue balancear a sua
-							alimentação e, desta forma, controlar a doença que tanto
-							atormentava-lhe à um ano atrás!
-						</p>
-						<p>
-							<strong>João Pedro</strong>, homem de 34 anos, recorreu a uma
-							consulta nutricional em Janeiro 2019, para perder o peso que
-							havia ganho no último ano! Já praticando exercício, não estava a
-							ter sucesso, tendo até aumentado! Tinha ainda algumas questões de
-							saúde, que o próprio não valorizou inicialmente, mas com a
-							intervenção nutricional foram detetadas e resolvidas (o próprio
-							conta no testemunho).
-						</p>
-
+						<p>O nosso comportamento alimentar está relacionado a questões
+							fisiológicas, metabólicas e ambientais. Entender a importância do
+							nutricionista é fundamental para ter uma vida saudável, já que um
+							dos principais fatores é a boa alimentação. Logo, esse
+							profissional consegue nos passar orientações nutricionais,
+							direcionadas para cada metabolismo. Cada pessoa precisa de
+							quantidades individuais de macro e micronutrientes para manter o
+							funcionamento correto do organismo e o equilíbrio do corpo.</p>
+						<p>Por essa razão, as escolhas alimentares diárias influenciam
+							diretamente na saúde e no bem-estar. Portanto, o nutricionista
+							auxilia nas escolhas inteligentes dos alimentos, visando a
+							manutenção, a recuperação da saúde ou a prevenção de doenças.
 					</div>
 					<form th:action="@{/historic/successfull}" method="POST">
+
 						<div class="landing-button">
+
+
 							<button class="btn btn-secondary btn-sm" type="submit">Marque
-								já a sua consulta!</button>
+								já a sua consulta!   
+  <br>
+ Primeira consulta grátis</button>
+
 						</div>
-					</form>
-					<div class="end-of-page"></div>
 				</div>
+				</form>
+				<div class="end-of-page"></div>
 			</div>
 		</div>
+	</div>
 	</div>
 	</div>
 	</div>

@@ -6,7 +6,7 @@ public enum InfluencePrincipleEnum
   AUTHORITY(1.5),
   CONSENSUS(1.4),
   SCARCITY(1.2),
-  LIKING(1.3);
+  RECIPROCITY(1.3);
 
   private final double priority;
 

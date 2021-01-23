@@ -45,8 +45,8 @@ public class ViewDicasAlimentacaoController
       case CONSENSUS:
         redirect = "dicas-alimentacao-consensus";
         break;
-      case LIKING:
-        redirect = "dicas-alimentacao-liking";
+      case RECIPROCITY:
+        redirect = "dicas-alimentacao-reciprocity";
         break;
       case SCARCITY:
         redirect = "dicas-alimentacao-scarcity";

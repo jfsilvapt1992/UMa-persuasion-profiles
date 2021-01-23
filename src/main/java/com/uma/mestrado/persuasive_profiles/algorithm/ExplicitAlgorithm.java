@@ -46,7 +46,7 @@ public class ExplicitAlgorithm implements PersuasionProfileAlgorithm
         response = getPersuasionProfile(InfluencePrincipleEnum.CONSENSUS.name());
         break;
       case NORMAL:
-        response = getPersuasionProfile(InfluencePrincipleEnum.LIKING.name());
+        response = getPersuasionProfile(InfluencePrincipleEnum.RECIPROCITY.name());
         break;
     }
     logger.info("Influence principle choosed: " + response.getName());

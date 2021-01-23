@@ -110,7 +110,7 @@ public class ImplicitAlgorithm implements PersuasionProfileAlgorithm
     {
       case AUTHORITY:
       case CONSENSUS:
-      case LIKING:
+      case RECIPROCITY:
       case SCARCITY:
         logger.info("######## " + aPersuasionProfileDto.getName() + " | priority applied: " + principleEnum.getPriority());
         value = principleEnum.getPriority() * aTotalRatio;
