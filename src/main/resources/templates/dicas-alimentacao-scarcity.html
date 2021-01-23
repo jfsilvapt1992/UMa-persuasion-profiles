@@ -19,6 +19,8 @@
 
 .landing-button {
 	float: right;
+	height: auto;
+	width: auto;
 }
 
 .image-class {
@@ -30,6 +32,22 @@
 .end-of-page {
 	height: 100px;
 }
+
+.scarcity-label {
+	margin-top: 5px;
+	height: auto;
+	width: auto;
+	margin-left: 15px;
+	color:red;
+}
+
+.scarcity-label-2 {
+	height: auto;
+	width: auto;
+	margin-left: 25px;
+	color:red;
+}
+
 </Style>
 </head>
 <body>
@@ -57,7 +75,7 @@
 		<div class="panel-body">
 			<div class="landing-page">
 				<div class="col-md-12">
-					<h2 class="card-title">Hábitos de uma vida saudável(SCARCITY)</h2>
+					<h2 class="card-title">Hábitos de uma vida saudável</h2>
 					<div class="news-post-content text-justify">
 						<div class="spacer-extra-small"></div>
 						<p>
@@ -87,32 +105,44 @@
 					</div>
 					<div class="news-post-content text-justify">
 						<div class="influence-principle"></div>
-						<h2 class="card-title">Conselho do George Clooney</h2>
+						<h2 class="card-title">Qual a importância do nutricionista?</h2>
 						<div class="image-class">
-							<img th:src="@{/images/george_clooney.jpg}" />
+							<img th:src="@{/images/roda_alimentar.jpg}" />
 						</div>
-						<p>
-							<strong>Hábitos saudáveis</strong> aprende-se da mesma forma que
-							os menos saudáveis, praticando.
-						</p>
-						<p>George Clooney diz que o passo mais importante é a marcação
-							de uma consulta, para analisarmos com um especialista os maus
-							hábitos que estavam presentes no seu dia-a-dia.</p>
-						<p>Depois, é uma questão de presistência, confiar na rotina e
-							esperar que apareça os resultados, lembrando-se sempre que quanto
-							maior é o esforço, maior é a recompensa.</p>
-
+						<p>O nosso comportamento alimentar está relacionado a questões
+							fisiológicas, metabólicas e ambientais. Entender a importância do
+							nutricionista é fundamental para ter uma vida saudável, já que um
+							dos principais fatores é a boa alimentação. Logo, esse
+							profissional consegue nos passar orientações nutricionais,
+							direcionadas para cada metabolismo. Cada pessoa precisa de
+							quantidades individuais de macro e micronutrientes para manter o
+							funcionamento correto do organismo e o equilíbrio do corpo.</p>
+						<p>Por essa razão, as escolhas alimentares diárias influenciam
+							diretamente na saúde e no bem-estar.Portanto, o nutricionista
+							auxilia nas escolhas inteligentes dos alimentos, visando a
+							manutenção, a recuperação da saúde ou a prevenção de doenças.
 					</div>
 					<form th:action="@{/historic/successfull}" method="POST">
+
 						<div class="landing-button">
-								<button  class="btn btn-secondary btn-sm" type="submit">Marque
+
+
+							<button class="btn btn-secondary btn-sm" type="submit">Marque
 								já a sua consulta!</button>
+
+							<div class="scarcity-label">
+								<label>Última opurtinidade!</label>
+							</div>
+							<div class="scarcity-label-2">
+								<label>Uma vaga apenas!</label>
+							</div>
 						</div>
-					</form>
-					<div class="end-of-page"></div>
 				</div>
+				</form>
+				<div class="end-of-page"></div>
 			</div>
 		</div>
+	</div>
 	</div>
 	</div>
 	</div>
