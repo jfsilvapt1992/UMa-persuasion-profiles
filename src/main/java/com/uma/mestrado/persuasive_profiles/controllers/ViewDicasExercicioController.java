@@ -19,24 +19,24 @@ import swaggerCodegen.models.GetLoginResponse;
 
 
 @Controller
-public class ViewDicasAlimentacaoController
+public class ViewDicasExercicioController
 {
 
-  Logger logger = LoggerFactory.getLogger(ViewDicasAlimentacaoController.class);
+  Logger logger = LoggerFactory.getLogger(ViewDicasExercicioController.class);
 
   @Autowired
   private BackendAPIServices backendApiService;
 
   @GetMapping(
   {
-    "dicas-alimentacao",
-    "dicas-alimentacao.html"
+    "dicas-exercicio",
+    "dicas-exercicio.html"
   })
   private String getDicasAlimentacao(Model aModel, HttpSession aSession)
   {
     try
     {
-      logger.info("----------------- DICAS ALIMENTACAO -----------------");
+      logger.info("----------------- DICAS EXCERCICIO -----------------");
       GetLoginResponse loginData = (GetLoginResponse) aSession.getAttribute("loginResponse");
 
       GetInfluencePrincipleResponse selectedPrinciple = getInfluencePrincipleFromSession(loginData);
@@ -45,7 +45,7 @@ public class ViewDicasAlimentacaoController
 
       aSession.setAttribute("activePrinciple", new PersuasionProfileDto(selectedPrinciple.getId(), selectedPrinciple.getName()));
 
-      logger.info("------------------------------------------------------");
+      logger.info("----------------------------------------------------");
       return getPageToRedirect(selectedPrinciple);
     }
     catch (Exception e)
@@ -69,16 +69,16 @@ public class ViewDicasAlimentacaoController
     switch (ipEnum)
     {
       case AUTHORITY:
-        redirect = "dicas-alimentacao-authority";
+        redirect = "dicas-exercicio-authority";
         break;
       case CONSENSUS:
-        redirect = "dicas-alimentacao-consensus";
+        redirect = "dicas-exercicio-consensus";
         break;
       case RECIPROCITY:
-        redirect = "dicas-alimentacao-reciprocity";
+        redirect = "dicas-exercicio-reciprocity";
         break;
       case SCARCITY:
-        redirect = "dicas-alimentacao-scarcity";
+        redirect = "dicas-exercicio-scarcity";
         break;
       default:
         break;
