@@ -120,6 +120,34 @@ public class DatabaseManager
   }
 
   @Transactional
+  public void updateHistoric(POSTHistoricRequest aHistoricReq) throws DatabaseException
+  {
+    try
+    {
+      List<Historic> historicList = historicDAO.findAll(
+      QHistoric.historic.person.id.eq(aHistoricReq.getPersonId()).and(QHistoric.historic.influencePrinciple.id.eq(aHistoricReq.getInfluencePrincipleId())));
+
+      Integer historicIdToUpdate = 0;
+      for (Historic temp : historicList)
+      {
+        if (temp.getId() > historicIdToUpdate)
+        {
+          historicIdToUpdate = temp.getId();
+        }
+      }
+
+      Historic historicToUpdate = historicDAO.getOne(historicIdToUpdate);
+      historicToUpdate.setWasInfluenced(true);
+      historicDAO.save(historicToUpdate);
+    }
+    catch (@SuppressWarnings("unused")
+    Exception ex)
+    {
+      throw new DatabaseException("Error doing register");
+    }
+  }
+
+  @Transactional
   public int selectHistoricCount(int aPersonId) throws DatabaseException
   {
     try

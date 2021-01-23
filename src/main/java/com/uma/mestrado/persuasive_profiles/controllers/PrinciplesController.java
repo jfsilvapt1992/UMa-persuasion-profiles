@@ -33,8 +33,8 @@ public class PrinciplesController
       GetLoginResponse sessionData = (GetLoginResponse) aSession.getAttribute("loginResponse");
       PersuasionProfileDto currentPersuasionProfile = (PersuasionProfileDto) aSession.getAttribute("activePrinciple");
 
-      ResponseEntity<Void> postHistoric = backendApiServices.postHistoric(sessionData.getPersonId(), currentPersuasionProfile.getId(), true);
-      if (!postHistoric.getStatusCode().is2xxSuccessful())
+      ResponseEntity<Void> putHistoric = backendApiServices.putHistoric(sessionData.getPersonId(), currentPersuasionProfile.getId(), true);
+      if (!putHistoric.getStatusCode().is2xxSuccessful())
       {
         return "redirect:/error500";
       }

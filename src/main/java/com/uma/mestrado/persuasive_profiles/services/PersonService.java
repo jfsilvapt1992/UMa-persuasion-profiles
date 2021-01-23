@@ -98,4 +98,23 @@ public class PersonService
       return new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
+  public ResponseEntity<Void> putHistoric(Integer aPersonId, Integer aInfluencePrincipleId, Boolean aWasInfluenced)
+  {
+    try
+    {
+      logger.info("Starting updating  person historic ..");
+
+      dbManager.updateHistoric(new POSTHistoricRequest(aPersonId, aInfluencePrincipleId, aWasInfluenced));
+
+      logger.info("Updated historic successfully");
+
+      return new ResponseEntity<>(HttpStatus.OK);
+    }
+    catch (DatabaseException e)
+    {
+      logger.error(this.getClass().getName() + " error : ", e.getMessage());
+      return new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 }
