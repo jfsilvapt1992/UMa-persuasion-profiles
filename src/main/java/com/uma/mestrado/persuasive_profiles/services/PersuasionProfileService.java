@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import com.uma.mestrado.persuasive_profiles.algorithm.ExplicitAlgorithm;
 import com.uma.mestrado.persuasive_profiles.algorithm.ImplicitAlgorithm;
 import com.uma.mestrado.persuasive_profiles.algorithm.PersuasionProfileAlgorithm;
-import com.uma.mestrado.persuasive_profiles.algorithm.RandomAlgorithm;
 import com.uma.mestrado.persuasive_profiles.database.DatabaseManager;
 import com.uma.mestrado.persuasive_profiles.enums.AlgorithmEnum;
 import com.uma.mestrado.persuasive_profiles.models.PersuasionProfileDto;
@@ -69,10 +68,6 @@ public class PersuasionProfileService
       case IMPLICIT:
         logger.info("Selected IMPLICIT algorithm");
         persuasionProfileAlgorithm = new ImplicitAlgorithm(dbManager, aPersonId);
-        break;
-      case RANDOM:
-        logger.info("Selected RANDOM algorithm");
-        persuasionProfileAlgorithm = new RandomAlgorithm(dbManager);
         break;
       default:
         break;
